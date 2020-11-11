@@ -1,0 +1,2723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/codyhouse-framework/main/assets/js/util.js"></script>
+    <script src="./js/util.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+
+    <script src="./js/parsley.js"></script>
+    <script src="./js/parsley.min.js"></script>
+    <script src="./js/all-stores.js"></script>
+    
+
+    <link rel="stylesheet" href="./styles.css">
+    
+    <style>
+        *{
+            font-family: 'Source Sans Pro', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper{
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+                background:  #f5f5f5;
+                overflow: hidden;
+        }
+        .header .left-col{
+            height:50px;
+            background:white;
+        }
+        ::placeholder{
+            color: #666666;
+        }
+        .header{
+            background: white;
+            z-index: 1;
+        }
+        .warning-text{
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .inputs-row:first-of-type{
+            margin-top: 9px;
+        }
+        .inputs-row{
+            position: relative;
+        }
+        
+        .input-wrap{
+            margin: 25px 0;
+            position: relative;
+        }
+        #first-input{
+            margin-top: 9px;
+        }
+        .info{
+           height: 32px;
+        }
+        .link{
+            color: #2773AA;
+        }
+        .logo-img{
+            height: 20px;
+        }
+        .link:hover{
+            text-decoration: underline;
+        }
+        .under-header{
+            background: #EEEEEE;
+        }
+        .btn{
+            background: bisque;
+            padding: 1px 8px;
+            border-radius: 5px;
+            border: 2px solid transparent;
+            white-space: nowrap;
+            font-size: 0.875rem;
+        }
+        .btn-primary{
+            background:#4299e1;
+            color:white;
+        }
+        .btn-primary:hover{
+            background:#4482ad;
+            color:white;
+        }
+        .rounded-num{
+            display: inline;
+            border-radius: 50%;
+            padding: 2px 10px;
+            border: 1px solid #CCCCCC;
+            color: #CCCCCC;
+            font-weight: bold;
+            font-family: 'Open Sans Condensed', sans-serif;
+        }
+        .road-container{
+            background:#F5F5F5;
+        }
+        .road-item{
+            background:#F5F5F5;
+            color: #CCCCCC;
+            cursor: pointer;
+        }
+        
+        .road{
+            position: relative;
+        }
+        .road::after{
+            content: "";
+            position: absolute;
+            width: 87%;
+            height: 2px;
+            background: #ddd;
+            top: 49%;
+            right: 19px;
+        }
+        .second_name{
+            margin-left: 30px;
+        }
+        .active p{
+            color: black;
+        }
+        .active .rounded-num{
+            border: 1px solid #336699;
+            color: #336699;
+        }
+        .check-round{
+            padding: 8px 6px;
+        }
+        #check-img{
+            height: 12px;
+        }
+        .main{
+            background:#F5F5F5;
+            padding-bottom: 1rem;
+            width: 100%;
+            max-width: 1366px;
+            margin: 0 auto;
+        }
+        .close-btn{
+            margin-top: 6px;
+        }
+        .close-img{
+            height: 28px;
+        }
+        .input-group{
+            background:white;
+            border-radius: 5px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 7px;
+        }
+        .input-group > div{
+            position: relative;
+        }
+        .input-group input, select{
+            display: block;
+            height:40px;
+            border: 1px solid #999999;
+            border-radius: 5px;
+            width:100%;
+            padding-left: 1rem;
+        }
+        select{
+            border:1px solid #DDDDDD;
+            appearance: none;
+            background-image: url(img/arrow_select.png);
+            background-repeat: no-repeat;
+            background-position: 95% 50%;
+        }
+        select:invalid { color: gray; }
+          
+        .input-wrap{
+            position: relative;
+        }
+        .question-icon{
+            display: none;
+            position: absolute;
+            bottom: 12px;
+            right: 13px;
+        }
+        
+        .alert-box{
+                position: absolute;
+                z-index: 9;
+                background: #000000;
+                padding: 5px;
+                line-height: 16px;
+                color: white;
+                top: -93px;
+                right: -14px;
+                width: 184px;
+                border-radius: 5px;
+                font-size: 14px;
+                height: 90px;
+                visibility: hidden;
+            }
+            .alert-box:after{
+                content: " ";
+                position: absolute;
+                right: 28px;
+                top: 76px;
+                transform: rotate(90deg);
+                border-top: 15px solid transparent;
+                border-right: none;
+                border-left: 15px solid #000000;
+                border-bottom: 15px solid transparent;
+            }
+        
+        .shipping-title{
+            font-size: 14px;
+        }
+        .estimated-date{
+            font-size: 12px;
+            color: #999999;
+            text-transform: capitalize;
+        }
+        #method-block{
+            border: none;
+            border: 1px solid #ccc;
+        }
+        #border-custom{
+            border: none;
+            border-bottom: 1px solid #CCCCCC;
+        }
+        
+        @media only screen and (min-width: 530px){
+            #border-custom{
+                border: none;
+                border-right: 1px solid #CCCCCC;
+            }
+            .inputs-row{
+                display: flex;
+                margin: 25px auto;
+                justify-content: space-between;
+            }
+            #first-input{
+                margin-top: 0px;
+            }
+            .warning-text{
+                text-align: left;
+            }
+            .inputs-row:first-of-type{
+                margin-top: 20px;
+            }
+            .inputs-row > input, .inputs-row > select, .inputs-row >div{
+                margin: 0;
+                width: 50%;
+            }
+            .inputs-row > div:nth-child(2){
+                margin-left: 30px;
+            }
+            .input-wrap input{
+                margin: 0 auto;
+                width: 100%;
+            }
+            .input-wrap{
+                width: 50%;
+            }
+            #ml-1rem{
+                margin-left: 30px;
+            }
+            .question-icon{
+                display: block;
+            }
+            .question-icon:hover ~ .alert-box{
+                visibility: visible;
+            }
+            .input-group{
+                padding-top: 19px;
+            }
+            
+        }
+        
+        .btn-container{
+            width: 100%;
+            margin-top: 22px;
+        }
+        .btn-continue{
+            font-size:18px;
+            border: 1px solid #333333;
+            color:white;
+            background:#333333;
+            border-radius: 3px;
+            width: 100%;
+            height: 45px;
+        }
+        .btn-continue:disabled{
+            cursor: not-allowed;
+            
+        }
+        .return-link{
+            display: block;
+            text-align: center;
+            color: #666666;
+            font-size: 14px;
+            margin:0 auto ;
+            margin-top: 1rem;
+            
+        }
+        .navigation img{
+            display: none;
+        }
+        @media only screen and (min-width: 420px)  {
+            .navigation{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-direction: row-reverse;
+                margin-bottom: 25px;
+            }
+            .btn-container{
+                width: auto;
+                padding-right: 0;
+            }
+            .return-link{
+                margin: 0;
+                text-align: unset;
+                margin-top: 22px;
+                display: flex;
+            }
+            .return-link img{
+                transform: rotate(180deg);
+                margin-right: 5px;
+                display: block;
+            }
+            .btn-continue{
+                padding: 7px 10px;
+                font-size:14px;
+                height: unset;
+                display: flex;
+                align-items: center;
+            }
+            .btn-continue img{
+                display: block;
+                height: 11px;
+                margin-left: 5px;
+            }
+            .main{
+                padding-bottom: 0;
+            }
+        }
+        
+        .return-link:hover{
+            text-decoration: underline;
+        }
+        .footer{
+            background:#DDDDDD;
+            padding: 1rem 0;
+            font-size: 16px;
+            color: #454545;
+            margin-top: auto;
+        }
+        .help-text{
+            text-align: center;
+        }
+        .comment-gray{
+            display: none;
+        }
+        #method-block > label{
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+        @media only screen and (min-width: 1025px){
+            .comment-gray{
+                display: block;
+            }
+            .comment-red{
+                display: none;
+            }
+        }
+
+        .live-chat-btn{
+            display: flex;
+            margin: 0 auto;
+            margin-top: 1rem;
+            background: #FFFFFF;
+            padding: 7px 17px;
+            border-radius: 5px;
+            border: 2px solid transparent;
+            color: #333333;
+            box-shadow: 0px 2px 3px #00000015;
+            width: 126px;
+            white-space: nowrap;
+        }
+        .contact{
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .email{
+            margin: 0 auto;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .order-header{
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #ccc;
+            align-items: center;
+        }
+        .order-summary{
+            margin: 1rem;
+            position: relative;
+            z-index: 1;
+            display: none;
+        }
+        #drawer-order{
+            display: none;
+        }
+        .coupon-input{
+            border-radius: 4px 0px 0px 4px;
+            font-size: 14px;
+            height: 30px;
+            padding-left: 10px;
+            color: #999999;
+            box-shadow: 0px 1px 2px #00000014;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+        .coupon-btn{
+            font-size: 12px;
+            background: #333333;
+            height: 30px;
+            color: white;
+            padding: 6px 11px;
+            border-radius: 0px 4px 4px 0px;
+        }
+        .order-title{
+            font-size: 19px;
+            flex: 1;
+            white-space: nowrap;
+            margin-right: 20px;
+        }
+        @media only screen and (min-width: 420px){
+            .order-title{
+                font-size: 24px;
+            }
+        }
+        .coupon-block{
+            display: flex;
+            justify-content: center;
+        }
+        .order-item{
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+        }
+        .description-item{
+            display: flex;
+            align-items: end;
+            width: 90%;
+        }
+        .description-item img{
+            margin-right: 15px;
+            width: 90px;
+            height: 100%;
+            flex: 0 0 90px;
+            border-radius: 3px;
+            box-shadow: 0px 2px 3px #00000019;
+        }
+        .select-row{
+            display: flex;
+            color: #707070;
+        }
+        .select-row p{
+            font-size: 12px;
+        }
+        .select-row select{
+            margin: 0;
+            height: 35px;
+            box-shadow: 0px 2px 3px #00000019;
+        }
+        .item-name{
+            color: #333333;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .size-block{
+            width: 70%;
+        }
+        #cart_qty{
+            max-width: 63px;
+            padding-left: 7px;
+        }
+        #cart_size{
+            max-width: 142px;
+            padding-left: 7px;
+        }
+        .quantity{
+            width: 31%;
+            max-width: 63px;
+            margin-left: 3px;
+        }
+        .size{
+            width: 65%;
+            max-width: 142px;
+        }
+        .price-block{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .full-price{
+            color: #666666;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .sale-price{
+            color: #E4002B;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .price{
+            margin-top: auto;
+        }
+        .delete-icon{
+            margin-bottom: auto;
+        }
+        .free-delievery{
+            color: #27AA27;
+            font-size: 12px;
+        }
+        .subtotal-block{
+            border-bottom: 1px solid #ccc;
+        }
+        .item-code{
+            font-size: 10px;
+            color: #333333;
+        }
+        .aditional-info{
+            border-bottom: 1px solid #ccc;
+        }
+        .subtotal-block > div{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .shipping, .hst{
+            color:#333333;
+            font-size: 12px;
+        }
+        .total-block > p{
+            font-family: 'Roboto Condensed', sans-serif;
+            color: black;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .rounded-num > span{
+                font-family: 'Roboto', sans-serif;
+            }
+        .log-in-text{
+            display: none;
+        }
+        .security-block{
+                margin-left: 20px;
+        }
+        .additional-info{
+            margin-right: 22px;
+            font-weight: bold;
+        }
+        .lock-img{
+            margin-left: 10px;
+        }
+        .header-container{
+            height: 50px;
+        }
+        #billing-content{
+            padding: 0 1rem;
+            margin-top: 1rem;
+        }
+        
+        @media only screen and (min-width: 1025px){
+            .order-summary{
+                display: block;
+            }
+            #billing-content{
+                padding: 0;
+                margin-top: 0;
+            }
+            .navigation{
+                margin-left: 0;
+                margin-right: 0;
+            }
+            .logo-img{
+                height: 32px;
+            }
+            
+            .main{
+                display: flex;
+                justify-content: space-between;
+               
+            }
+            .road-item > p{
+                font-size: 24px;
+            }
+            .security-block{
+                margin-left: 50px;
+            }
+            .lock-img{
+            margin-left: 18px;
+            }
+            .inputs-row{
+                margin: 30px auto;
+            }
+            .road{
+                display: block;
+            }
+            .road > div{
+                padding: 0;
+                margin-bottom: 50px;
+                font-size: 1.25rem;
+            }
+            .rounded-num{
+                padding: 7px 18px;
+                border: 2px solid #CCCCCC;
+                margin-right: 20px;
+            }
+            .check-round{
+                padding: 14px 12px;
+            }
+            #check-img{
+                height: 16px;
+            }
+            
+            .active .rounded-num{
+                border: 2px solid #336699;
+            }
+            .contact > br{
+                display: none;
+            }
+            .road::after{
+               display: none;
+            }
+            .road-item:nth-child(1)::after{
+                content: "";
+                position: absolute;
+                width: 2px;
+                height: 44px;
+                top: 51px;
+                left: 24px;
+                background: #ddd;
+            }
+            .road-item:nth-child(2)::after{
+                content: "";
+                position: absolute;
+                width: 2px;
+                height: 44px;
+                top: 149px;
+                left: 24px;
+                background: #ddd;
+            }
+            .header-container{
+                height: 100px;
+                align-items: center;
+                max-width: 1366px;
+                margin: 0 auto;
+            }
+            .header-container span{
+                font-size: 28px;
+            }
+            .under-header{
+                display: none;
+            }
+            .left-main-col{
+                display: flex;
+                width:65%;
+            }
+            .right-main-col{
+                width:35%;
+                background: #EEEEEE;
+                margin-left: 25px;
+            }
+            .main-part{
+                width: 85%;
+                margin-left: 25px;
+            }
+            .log-in-text{
+                display: block;
+                margin-left: 1rem;
+                color: #666666;
+                font-size: 16px;
+                margin-top: 2rem;
+            }
+            .input-group{
+                margin: 0;
+                margin-top: 1rem;
+                padding-left: 30px;
+                padding-right: 30px;
+                padding-top: 19px;
+            }
+            .road-container{
+                margin-top: 5rem;
+                padding-top: 0;
+            }
+            .order-summary{
+                padding-left: 1rem;
+            }
+            .footer{
+                background: #F5F5F5;
+                padding: 0;
+                border-top: 1px solid #ccc;
+                padding-bottom: 24px;
+                padding-top: 18px;
+            }
+            .footer-wrap{
+                max-width: 1366px;
+                margin: 0 auto;
+                background: #F5F5F5;
+            }
+            .left-footer-part{
+                display: flex;
+                align-items: center;
+                width: calc(65% + 5px);
+                justify-content: space-between;
+                padding-right: 20px;
+            }
+            .left-footer-part > *{
+                padding: 0;
+                margin: 0 10px;
+            }
+            .live-chat-btn{
+                background: none;
+                border: none;
+                box-shadow: none;
+                width: auto;
+            }
+            .right-main-col{
+                margin-bottom: -60px;
+                position: relative;
+            }
+            .right-main-col::before{
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                width: 100vh;
+                z-index: 0;
+                background: #eeeeee;
+                height: 100vh;
+            }
+        }
+        @media only screen and (min-width: 1400px){
+            .main-part{
+                margin-left: 50px;
+            }
+            .right-main-col{
+                margin-left: 50px;
+            }
+        }
+        
+         
+ :root {
+	 --drawer-width: 430px;
+    }
+ .drawer {
+	 position: fixed;
+	 z-index: 15;
+	 width: 100%;
+	 max-width: 430px;
+	 height: 100%;
+	 top: 0;
+	 right: 0;
+	 visibility: hidden;
+	 transition: visibility 0s 0.3s;
+}
+ .drawer:focus {
+	 outline: none;
+}
+ .drawer--is-visible {
+	 visibility: visible;
+	 transition: none;
+    }
+ .drawer--open-left {
+	 right: auto;
+	 left: 0;
+}
+ .drawer__content {
+	 position: absolute;
+	 width: 100%;
+	 height: 100%;
+	 top: 0;
+	 right: 0;
+	 background-color: hsl(0, 0%, 100%);
+	 box-shadow: hsl(0deg 11% 33%);
+    box-shadow: 0 94.9px 70.5px rgb(12 12 12 / 3%), 0 3.1px 5.5px rgba(0, 0, 0, 0.08), 0 14px 25px rgb(0 0 0);
+	 transform: translateX(100%);
+	 transition: transform 0.3s;
+	 transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+ .drawer--open-left .drawer__content {
+	 transform: translateX(-100%);
+}
+ .drawer--is-visible .drawer__content {
+	 transform: translateX(0);
+}
+ .drawer__body {
+	 height: 100%;
+	 overflow: auto;
+	 overscroll-behavior: contain;
+	 -webkit-overflow-scrolling: touch;
+     background: #eeeeee;
+}
+ .drawer__close-btn {
+	 z-index: 10;
+	 top: calc(0.375 * var(--space-unit));
+	 right: calc(0.375 * var(--space-unit));
+	 width: 2em;
+	 height: 2em;
+	 display: flex;
+	 flex-shrink: 0;
+	 justify-content: center;
+	 align-items: center;
+	 border-radius: 50%;
+	 background-color: alpha(hsl(0, 0%, 100%), 0.95);
+	 box-shadow: var(--shadow-sm);
+	 transition: 0.2s;
+}
+ .drawer__close-btn:hover {
+	 background-color: hsl(0, 0%, 100%);
+	 box-shadow: 0 0.9px 1.5px rgba(0, 0, 0, 0.03), 0 3.1px 5.5px rgba(0, 0, 0, 0.08), 0 14px 25px rgba(0, 0, 0, 0.12);
+}
+ .drawer__close-btn .icon {
+	 display: block;
+	 color: hsl(240, 4%, 20%);
+}
+ .drawer__header {
+	 display: flex;
+	 align-items: center;
+	 justify-content: space-between;
+	 flex-shrink: 0;
+	 padding: calc(0.5 * 1.25em) calc(1.25 * 1.25em);
+	 border-bottom: 1px solid hsl(0, 0%, 95%);
+}
+ .drawer--modal {
+	 max-width: none;
+	 background-color: alpha(hsl(240, 8%, 12%), 0);
+	 transition: background-color 0.3s, visibility 0s 0.3s;
+}
+ .drawer--modal.drawer--is-visible {
+	 background-color: alpha(hsl(240, 8%, 12%), 0.6);
+	 transition: background-color 0.3s;
+}
+ .drawer--modal.drawer--open-left .drawer__content {
+	 right: auto;
+	 left: 0;
+}
+ .drawer--modal .drawer__content {
+	 max-width: 430px;
+}
+@media only screen and (min-width: 1025px){
+    .drawer{
+        display: none;
+    }
+} 
+    
+    #shipping-content{
+        padding: 0 1rem;
+        display: none;
+    }
+    #shipping-road{
+        display: none;
+    }
+    .shipping-title{
+        color: #666666;
+        line-height: 14px;
+        margin-top: 20px;
+    }
+    input[type="radio"]{
+        display: none;
+    }
+    .destination-block{
+        border: 1px solid #CCCCCC;
+        margin-top: 14px;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+    .destination-block > label{
+        background: white;
+        height: 40px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        padding-top: 11px;
+        padding-bottom: 11px;
+        border-bottom:1px solid #CCCCCC;
+        
+    }
+    .destination-block > label:last-child{
+        border: none;
+    }
+    .free{
+        display: none;
+        font-size: 18px;
+        color: #E4002B;
+        font-weight: bold;
+        margin-right: 22px;
+    }
+    .text_label{
+        position: relative;
+        padding-left: 40px;
+    }
+    .active-lbl:after{
+        content: "";
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        border: 6px solid #00AA00;
+        box-sizing: border-box;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        position: absolute;
+    }
+    .not-active-lbl:after{
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 1px solid #CCCCCC;
+        box-sizing: border-box;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .ship-to-block{
+        margin-top: 16px;
+    }
+    .shipping-info-block{
+        padding: 22px 19px 14px 24px;
+        background: #FFFFFF;
+        border: 1px solid #CCCCCC;
+        border-radius: 3px;
+        width: 100%;
+        height: 190px;
+        flex: 1;
+    }
+    #first-second-name{
+        color: #333333;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 17px;
+    }
+    .detail-info{
+        color: #666666;   
+        font-size: 14px;
+    }
+    .edit-link{
+        display: block;
+        text-align: right;
+        color: #2773AA;
+        font-weight: bold;
+    }
+    #ship-to-map{
+        border: 5px solid #FFFFFF;
+        border-radius: 3px;
+        height: 190px;
+        width: 100%;
+        margin-top: 15px;
+    }
+    .parsley-errors-list{
+        line-height: 10px;
+        position: absolute;
+        top: 45px;
+        font-size: 12px;
+        color: red;
+    }
+    
+    .parsley-error{
+        color: #B94A48;
+        background-color: #F2DEDE;
+        border: 1px solid #EED3D7;
+    }
+    
+    @media all and (min-width: 600px) and (max-width: 1024px), (min-width: 1300px) {
+        .destination-block{
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+        #ship-to-map{
+            margin-top: 0;
+            flex: 2;
+            margin-left: 30px;
+        }
+        .free{
+            display: block;
+        }
+        .shipping-title{
+            font-size: 16px;
+        }
+        .destination-block > label{
+            width: 50%;
+            border: none;
+            
+            border-top: none;
+            font-size: 18px;
+            height: 60px;
+        }
+        .destination-block > label:nth-child(2){
+            display: flex;
+            justify-content: space-between;
+        }
+        .destination-block > label:nth-child(-n+2){
+            border-bottom: 1px solid #CCCCCC;
+        }
+        .destination-block > label:nth-child(odd){
+            border-right: 1px solid #CCCCCC;
+        }
+        .ship-to-block{
+            display: flex;
+        }
+    }
+    
+
+
+    /* The Modal (background) */
+    .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 5px;
+    overflow: hidden;
+    }
+    #modal-header{
+        background: hsl(0deg 0% 95%);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+    }
+    #softmoc-modal{
+        font-size: 19px;
+        font-weight: bold;
+        font-family: 'Roboto', sans-serif;
+    }
+    #modal-main{
+        padding: 15px;
+        display: flex;
+    }
+    #modal-map{
+        border-radius: 5px;
+        flex: 1;
+        overflow: hidden;
+    }
+    #shops-info-block{
+        margin-right: 15px;
+    }
+    .shop-info-block{
+        background: hsl(0deg 0% 95%);
+        margin-bottom: 14px;
+        overflow: hidden;
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 7px;
+        padding-right: 50px;
+        cursor: pointer;
+        transition: 0.4s;
+    }
+    .shop-info-block:hover{
+        background: hsl(0deg 0% 86%);
+       transition: 0.4s;
+    }
+    .softmoc-modal-name{
+        font-weight: bold;
+        margin-bottom: 4px;
+        font-size: 16px;
+    }
+    #request-text{
+        margin-left: 15px;
+        margin-top: 10px;
+        font-size: 18px;
+    }
+
+    /* The Close Button */
+    .close{
+        margin: 0;
+    }
+
+    .close:hover,
+    .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        
+    <div class="header shadow ">
+      <div class="header-container md:flex md:justify-between bg-white">
+        <div class="left-col flex justify-between items-center lg:justify-start">
+          <div class="ml-4 right-block">
+            <img class="logo-img" src="./img/softmoc-logo-tm@2x.png" alt="SoftLogo">
+          </div>
+          <div class="security-block flex left-block text-black justify-center mr-4 ">
+            <span class="text-base sm:text-xl">Secure Checkout</span>
+            <img class="lock-img" src="./img/lock.svg" alt="">
+          </div>
+        </div>
+        <div class="hidden right-col md:flex items-center mr-4">
+          <div class="info text-sm mr-4 leading-4">
+            <p>Use your SoftMoc Rewards Points and SAVE!</p>
+            <div class="flex justify-end">
+              <p class="text-blue-600 text-right mr-1">Learn More</p>
+              <img src="./img/info-square.svg" alt="info">
+            </div>
+          </div>
+          <img src="./img/softmoc-rewards.png" alt="reward">
+        </div>
+      </div>
+    </div>
+
+
+        
+    <div class="under-header">
+      <div class=" flex justify-between items-center py-2">
+        <div class="ml-4">
+          <p class="text-xs sm:text-base"><a class="link" href="#">Log In</a> or <a class="link" href="#">Create An Account</a></p>
+        </div>
+        <div class="mr-4">
+          <button aria-controls="drawer-cart-id" class="btn btn-primary">Order Summary</button>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="main">
+      <div class="left-main-col">
+        <div class="road-container pt-4" id="billing-road">
+          <div class="road flex justify-between mx-4 ">
+    
+            <div class="road-item active flex items-center z-10 pr-1">
+              <div class="rounded-num"><span>1</span></div>
+              <p class="ml-1 text-base sm:text-xl">Billing</p>
+            </div>
+    
+            <div class="road-item flex items-center z-10 px-1" onclick="GoToShipping()">
+              <div class="rounded-num">2</div>
+              <p class="ml-1 text-base sm:text-xl">Shipping</p>
+            </div>
+    
+            <div  class="road-item flex items-center z-10 pl-1">
+              <div class="rounded-num">3</div>
+              <p class="ml-1 text-base sm:text-xl">Payment</p>
+            </div>
+  
+          </div>
+        </div>
+        
+        <div id="billing-content" class="main-part">
+          <p class="log-in-text text-xs sm:text-base">For a faster checkout <a class="link" href="#">Log In</a> or <a class="link" href="#">Create An Account</a></p>
+          <form onsubmit="return false" id="form" class="input-group  shadow p-2 demo-form">
+            <p class="warning-text  text-red-600">All Fields Required</p>
+  
+            <div class="inputs-row">
+
+              <div id="first-input" class="input-wrap">
+                <input value="Ivan" required  id="first_name" data-parsley-length="[4, 20]" data-parsley-group="block-1" name="firstname"  class="js-input form-control mt-0" type="text" placeholder="First Name">
+              </div>
+              
+              <div class="input-wrap">
+                <input value="Korzhov" required  id="last_name" data-parsley-length="[4, 20]" data-parsley-group="block-1" class="form-control mt-0 js-input" type="text" placeholder="Last Name">
+              </div>
+            </div>
+            
+            <div>
+              <input required   id="autocomplete" class="address js-input" type="text" placeholder="Address">
+            </div>
+
+            <div class="inputs-row">
+              <div class="input-wrap">
+                <input required  id="postal_code" name="PostalCode" class="postal_code js-input" type="text" placeholder="Postal Code">
+              </div>
+              
+              <div class="input-wrap">
+                <input required  id="locality" name="City" class="city js-input" type="text" placeholder="City">
+              </div>
+            </div>
+            
+            <div class="inputs-row">
+              <div class="input-wrap">
+                <select class="js-input" required id="administrative_area_level_1" name="administrative_area_level_1">
+                  <option value="" selected disabled hidden>Select Province / Territory</option>
+                  <option value="AB">Alberta</option>
+                  <option value="BC">British Columbia</option>
+                  <option value="MB">Manitoba</option>
+                  <option value="NB">New Brunswick</option>
+                  <option value="NL">Newfoundland and Labrador</option>
+                  <option value="NS">Nova Scotia</option>
+                  <option value="ON">Ontario</option>
+                  <option value="PE">Prince Edward Island</option>
+                  <option value="QC">Quebec</option>
+                  <option value="SK">Saskatchewan</option>
+                </select>
+              </div>
+      
+              <div class="input-wrap">
+                <select required class="js-input">
+                  <option value="" selected disabled hidden value="Canada">Canada</option>
+                  <option value="Canada-NT">Canada-NT</option>
+                  <option value="Canada-NU">Canada-NU</option>
+                  <option value="Canada-YT">Canada-YT</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="inputs-row">
+              <div class="input-wrap">
+                <input value="4844448888" name="telephone-input" required class="js-input"  id="telephone-input" type="text" placeholder="Telephone">
+                <img class="question-icon" src="./img/question-circle.svg" alt="">
+                <div class="alert-box">
+                  Telephone number will only be used if there is a problem with your order. It will not be shared or used for any other purpose.
+                </div>
+              </div>
+              <div class="input-wrap" id="ml-1rem">
+                <input value="korzhoff.i@gmail.com" class="js-input" required type="email" id="email-input" type="text" placeholder="Email">
+                <img class="question-icon" src="./img/question-circle.svg" alt="">
+                <div class="alert-box">
+                  Unless you are a member of our E-Mail List, your e-mail address will only be used for updates regarding your order.
+                </div>
+              </div>
+            </div>
+  
+          </form>
+  
+          <div class="navigation">
+            <div class="btn-container">
+              <button disabled id="js-button" form="form" class="btn-continue validate">
+                Continue to Shipping
+                <img src="./img/chevron-right2.png" alt="">
+              </button>
+            </div>
+  
+            <a class="return-link" href="#" >
+              <img src="./img/chevron-right.svg" alt="">
+              Return to Previous Page
+            </a>
+          </div>
+        </div>
+
+
+        <div class="road-container pt-4" id="shipping-road">
+          <div class="road flex justify-between mx-4 ">
+    
+            <div class="road-item active flex items-center z-10 pr-1" onclick="ReturnBilling()">
+              <div class="rounded-num check-round"><span>
+                <img id="check-img" src="./img/check.png" alt=""></span>
+              </div>
+              <p class="ml-1 text-base sm:text-xl">Billing</p>
+            </div>
+    
+            <div class="road-item active flex items-center z-10 px-1">
+              <div class="rounded-num">2</div>
+              <p class="ml-1 text-base sm:text-xl">Shipping</p>
+            </div>
+    
+            <div  class="road-item flex items-center z-10 pl-1">
+              <div class="rounded-num">3</div>
+              <p class="ml-1 text-base sm:text-xl">Payment</p>
+            </div>
+  
+          </div>
+        </div>
+
+        <div id="shipping-content" class="main-part">
+          <p class="shipping-title first-title">
+            Choose Your Shipping Destination:
+          </p>
+          <div class="destination-block">
+              <label class="desctination-label" for="billing-address">
+                <input checked class="dest-radio" id="billing-address" type="radio" name="destination">
+                <span class="text_label active-lbl dest_label">My Billing Address</span>
+              </label>
+            
+            
+              <label id="openModal-js" class="desctination-label" for="softmoc-store">
+                <input class="dest-radio" id="softmoc-store" type="radio" name="destination" >
+                <span class="text_label not-active-lbl dest_label">SoftMoc Store</span>
+                <span class="free">FREE</span>
+              </label>
+            
+            
+              <label class="desctination-label" for="alternate-address">
+                <input class="dest-radio" id="alternate-address" type="radio" name="destination">
+                <span class="text_label not-active-lbl dest_label">Alternate Address</span>
+              </label>
+            
+            
+              <label class="desctination-label" for="ups-access-point">
+                <input class="dest-radio" id="ups-access-point" type="radio" name="destination">
+                <span class="text_label not-active-lbl dest_label">UPS Access Point</span>
+              </label>
+          </div>
+
+          <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <div id="modal-header">
+                <span id="softmoc-modal">SoftMoc Store</span>
+                
+                <button class="close-btn close">
+                  <img class="close-img" src="./img/close.png" alt="">
+                </button>
+              </div>
+
+              <p id="request-text">Please select a store from the list or the interactive map below</p>
+
+              <div id="modal-main">
+                <div id="shops-info-block">
+                  <div class="shop-info-block">
+                    <p class="softmoc-modal-name">Chinook Centre</p>
+                    <p class="softmoc-modal-address">3625 Shaganappi Trail NW, Unit R049</p>
+                    <p class="softmoc-modal-anotherInfo">Regina, SK, S4P 3Y6</p>
+                    <p class="softmoc-modal-distance">0.6 km. away</p>
+                  </div>
+                  <div class="shop-info-block">
+                    <p class="softmoc-modal-name">Market Mall</p>
+                    <p class="softmoc-modal-address">33 Heritage Meadows Way S.E., Unit 610</p>
+                    <p class="softmoc-modal-anotherInfo">Regina, SK, S4P 3Y6</p>
+                    <p class="softmoc-modal-distance">0.6 km. away</p>
+                  </div>
+                  <div class="shop-info-block">
+                    <p class="softmoc-modal-name">Shoe Rack Deerfoot Meadows</p>
+                    <p class="softmoc-modal-address">100 Anderson Road SE - Unit 152</p>
+                    <p class="softmoc-modal-anotherInfo">Regina, SK, S4P 3Y6</p>
+                    <p class="softmoc-modal-distance">0.6 km. away</p>
+                  </div>
+                  <div class="shop-info-block">
+                    <p class="softmoc-modal-name">Southcentre Mall</p>
+                    <p class="softmoc-modal-address">2525-36th Street N.E., Unit 121</p>
+                    <p class="softmoc-modal-anotherInfo">Regina, SK, S4P 3Y6</p>
+                    <p class="softmoc-modal-distance">0.6 km. away</p>
+                  </div>
+                </div>
+                <div id="modal-map">
+
+                </div>
+              </div>
+            </div>
+          
+          </div>
+          
+
+          <p class="shipping-title second-title">
+            Your Order Will Ship To:
+          </p>
+
+          <div class="ship-to-block">
+            <div class="shipping-info-block">
+              <p id="first-second-name"></p>
+              
+              <p id="street" class="detail-info"></p>
+              <p id="city-and-region" class="detail-info"></p>
+              <p id="code-and-country" class="detail-info"></p>
+              <p id="telephone-number" class="detail-info"></p>
+
+              <a class="edit-link" href="#" onclick="ReturnBilling()">Edit</a>
+            </div>
+            <div id="ship-to-map"></div>
+          </div>
+
+          <p class="shipping-title second-title">
+            Shipping Method:
+          </p>
+
+          <div id="method-block" class="destination-block">
+            <label id="border-custom" class="desctination-label" for="standard_shipping" >
+              <input  onclick="FreeMethod()" class="ship-radio" id="standard_shipping" type="radio" name="shipping-method" checked>
+              <span class="text_label active-lbl ship_label">
+                Standard Shipping<br>
+                <p class="estimated-date">Estimated by Feb 05</p>
+              </span>
+              <span class="additional-info">FREE</span>
+            </label>
+            <label class="desctination-label" for="express_shipping" style="border: none;" name="ship-method">
+              <input onclick="ExpressMethod()" class="ship-radio" id="express_shipping" type="radio" name="shipping-method">
+              <span class="text_label not-active-lbl ship_label">
+                Express Shipping<br>
+                <p class="estimated-date">Estimated by Feb 03</p>
+              </span>
+              <span id="js-express-price" class="additional-info">$7.08</span>
+            </label>
+          </div>
+
+          <div class="navigation">
+            <div class="btn-container">
+              <button class="btn-continue">
+                Continue to Payment
+                <img src="./img/chevron-right2.png" alt="">
+              </button>
+            </div>
+  
+            <a class="return-link" href="#" onclick="ReturnBilling()">
+              <img src="./img/chevron-right.svg" alt="">
+              Return to Previous Page
+            </a>
+          </div>
+        </div>
+
+      </div>
+      <div class="right-main-col">
+        <!-- ORDER SUMMARY -->
+      <div class="order-summary">
+        <div class="order-header">
+          <p class="order-title">Order Summary</p>
+          <div class="coupon-block">
+            <input class="coupon-input" type="text" placeholder="Coupon Code">
+            <button class="coupon-btn">APPLY</button>
+          </div>
+        </div>
+        <!-- FIRST ITEM -->
+        <div class="order-item mt-5">
+          <div class="left-block description-item">
+            <img src="./img/172-01_SSS.png" alt="">
+            <div class="size-block">
+              <p class="item-name">Duray</p>
+                <div class="select-row">
+                  <div class="size">
+                    <p>Size:</p>
+                    <select name="cart_size" id="cart_size">
+                      <option value="8.5">8.5 Men's</option>
+                      <option value="9.0">9 Men's</option>
+                      <option value="9.5">9.5 Men's</option>
+                      <option value="10.0">10 Men's</option>
+                      <option selected="" value="10.5">10.5 Men's</option>
+                      <option value="11.0">11 Men's</option>
+                      <option value="11.5">11.5 Men's</option>
+                      <option value="12.0">12 Men's</option>
+                      <option value="13.0">13 Men's</option>
+                      <option value="14.0">14 Men's</option>
+                      <option value="15.0">15 Men's</option>
+                    </select>
+                  </div>
+                  <div class="quantity">
+                    <p>Qty:</p>
+                    <select name="cart_qty" id="cart_qty">
+                      <option selected="1" value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="right-block text-right price-block">
+            <img class="delete-icon" src="./img/times.svg" alt="">
+            <div class="price">
+              <p class="full-price">$12.99</p>
+              <p class="sale-price">$9.74</p>
+            </div>
+            
+          </div>
+        </div>
+        <div class="aditional-info flex justify-between mt-5 pb-5">
+          <p class="free-delievery">Qualifies for FREE Shipping & Returns.</p>
+          <p class="item-code">1017271-wrch-19</p>
+        </div>
+        <!--END FIRST ITEM-->
+
+        <!-- SECOND ITEM -->
+        <div class="order-item mt-5">
+          <div class="left-block description-item">
+            <img src="./img/1017271-WRCH-19_SSS.png" alt="">
+            <div class="size-block">
+              <p class="item-name">Fraas</p>
+                <div class="select-row">
+                  <div class="quantity">
+                    <p>Qty:</p>
+                    <select name="cart_qty" id="cart_qty">
+                      <option selected="1" value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="right-block text-right  price-block">
+            <img src="./img/times.svg" alt="delete">
+              <div class="price">
+                <p class="full-price">$59.99</p>
+                <p class="sale-price">$29.99</p>
+              </div>
+          </div>
+        </div>
+        <div class="aditional-info flex justify-between mt-5 pb-5">
+          <p class="free-delievery">Qualifies for FREE Shipping & Returns.</p>
+          <p class="item-code">1017271-wrch-19</p>
+        </div>
+        <!--END SECOND ITEM-->
+
+        <!-- THIRD ITEM -->
+        <div class="order-item mt-5">
+          <div class="left-block description-item">
+            <img src="./img/Sapog.png" alt="">
+            <div class="size-block">
+              <p class="item-name">UGG</p>
+                <div class="select-row">
+                  <div class="size">
+                    <p>Size:</p>
+                    <select name="cart_size" id="cart_size">
+                      <option value="8.5">8.5 Men's</option>
+                      <option value="9.0">9 Men's</option>
+                      <option value="9.5">9.5 Men's</option>
+                      <option value="10.0">10 Men's</option>
+                      <option selected="" value="10.5">10.5 Men's</option>
+                      <option value="11.0">11 Men's</option>
+                      <option value="11.5">11.5 Men's</option>
+                      <option value="12.0">12 Men's</option>
+                      <option value="13.0">13 Men's</option>
+                      <option value="14.0">14 Men's</option>
+                      <option value="15.0">15 Men's</option>
+                    </select>
+                  </div>
+                  <div class="quantity">
+                    <p>Qty:</p>
+                    <select name="cart_qty" id="cart_qty">
+                      <option selected="1" value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="right-block text-right  price-block">
+            <img src="./img/times.svg" alt="delete">
+            <div class="price">
+              <p style="color: black;" class="full-price">$224.99</p>
+            </div>
+            
+          </div>
+        </div>
+        <div class="aditional-info flex justify-between mt-5 pb-5">
+          <p class="free-delievery">Qualifies for FREE Shipping & Returns.</p>
+          <p class="item-code">1017271-wrch-19</p>
+        </div>
+        <!--END THIRD ITEM-->
+        <div class="subtotal-block mt-2 pb-4">
+          <div >
+            <p>Subtotal</p>
+            <p id="js-subtotal-price" class="subtotal-price">$264.72</p>
+          </div>
+          <div>
+            <p>Shipping</p>
+            <p id="js-shipping" class="shipping">calculated at shipping</p>
+          </div>
+          <div>
+            <p>H.S.T.</p>
+            <p class="hst">calculated at shipping</p>
+          </div>
+        </div>
+        <div class="total-block flex justify-between mt-2">
+          <p>Total</p>
+          <p id="js-total-price">$264.72</p>
+        </div>
+      </div>
+    <!-- END ORDER SUMMARY -->
+      </div>
+      
+    </div>
+    
+
+
+
+        
+
+<div class="drawer dr-cart js-drawer" id="drawer-cart-id">
+  <div class="drawer__content" role="alertdialog" aria-labelledby="drawer-cart-title">
+    <div class="drawer__body padding-x-md padding-y-sm js-drawer__body">
+
+      <div class="header shadow ">
+          <div class="header-container flex justify-between bg-white items-center">
+
+            <div class="ml-4 right-block">
+              <p class="order-title">Order Summary</p>
+            </div>
+
+            <div class="right-col mr-4">
+              <button class="close-btn" aria-controls="drawer-cart-id">
+                <img class="close-img" src="./img/close.png" alt="">
+              </button>
+            </div>
+
+          </div>
+      </div>
+
+      <!-- ORDER SUMMARY -->
+      <div id="drawer-order" class="order-summary">
+        
+      <div class="coupon-block">
+        <input class="coupon-input" type="text" placeholder="Coupon Code">
+        <button class="coupon-btn">APPLY</button>
+      </div>
+        
+
+        <!-- FIRST ITEM -->
+        <div class="order-item mt-5">
+          <div class="left-block description-item">
+            <img src="./img/172-01_SSS.png" alt="">
+            <div class="size-block">
+              <p class="item-name">Duray</p>
+                <div class="select-row">
+                  <div class="size">
+                    <p>Size:</p>
+                    <select name="cart_size" id="cart_size">
+                      <option value="8.5">8.5 Men's</option>
+                      <option value="9.0">9 Men's</option>
+                      <option value="9.5">9.5 Men's</option>
+                      <option value="10.0">10 Men's</option>
+                      <option selected="" value="10.5">10.5 Men's</option>
+                      <option value="11.0">11 Men's</option>
+                      <option value="11.5">11.5 Men's</option>
+                      <option value="12.0">12 Men's</option>
+                      <option value="13.0">13 Men's</option>
+                      <option value="14.0">14 Men's</option>
+                      <option value="15.0">15 Men's</option>
+                    </select>
+                  </div>
+                  <div class="quantity">
+                    <p>Qty:</p>
+                    <select name="cart_qty" id="cart_qty">
+                      <option selected="1" value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="right-block text-right price-block">
+            <img class="delete-icon" src="./img/times.svg" alt="">
+            <div class="price">
+              <p class="full-price">$12.99</p>
+              <p class="sale-price">$9.74</p>
+            </div>
+            
+          </div>
+        </div>
+        <div class="aditional-info flex justify-between mt-5 pb-5">
+          <p class="free-delievery">Qualifies for FREE Shipping & Returns.</p>
+          <p class="item-code">1017271-wrch-19</p>
+        </div>
+        <!--END FIRST ITEM-->
+
+        <!-- SECOND ITEM -->
+        <div class="order-item mt-5">
+          <div class="left-block description-item">
+            <img src="./img/1017271-WRCH-19_SSS.png" alt="">
+            <div class="size-block">
+              <p class="item-name">Fraas</p>
+                <div class="select-row">
+                  <div class="quantity">
+                    <p>Qty:</p>
+                    <select name="cart_qty" id="cart_qty">
+                      <option selected="1" value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="right-block text-right  price-block">
+            <img src="./img/times.svg" alt="delete">
+              <div class="price">
+                <p class="full-price">$59.99</p>
+                <p class="sale-price">$29.99</p>
+              </div>
+          </div>
+        </div>
+        <div class="aditional-info flex justify-between mt-5 pb-5">
+          <p class="free-delievery">Qualifies for FREE Shipping & Returns.</p>
+          <p class="item-code">1017271-wrch-19</p>
+        </div>
+        <!--END SECOND ITEM-->
+
+        <!-- THIRD ITEM -->
+        <div class="order-item mt-5">
+          <div class="left-block description-item">
+            <img src="./img/Sapog.png" alt="">
+            <div class="size-block">
+              <p class="item-name">UGG</p>
+                <div class="select-row">
+                  <div class="size">
+                    <p>Size:</p>
+                    <select name="cart_size" id="cart_size">
+                      <option value="8.5">8.5 Men's</option>
+                      <option value="9.0">9 Men's</option>
+                      <option value="9.5">9.5 Men's</option>
+                      <option value="10.0">10 Men's</option>
+                      <option selected="" value="10.5">10.5 Men's</option>
+                      <option value="11.0">11 Men's</option>
+                      <option value="11.5">11.5 Men's</option>
+                      <option value="12.0">12 Men's</option>
+                      <option value="13.0">13 Men's</option>
+                      <option value="14.0">14 Men's</option>
+                      <option value="15.0">15 Men's</option>
+                    </select>
+                  </div>
+                  <div class="quantity">
+                    <p>Qty:</p>
+                    <select name="cart_qty" id="cart_qty">
+                      <option selected="1" value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="right-block text-right  price-block">
+            <img src="./img/times.svg" alt="delete">
+            <div class="price">
+              <p style="color: black;" class="full-price">$224.99</p>
+            </div>
+            
+          </div>
+        </div>
+        <div class="aditional-info flex justify-between mt-5 pb-5">
+          <p class="free-delievery">Qualifies for FREE Shipping & Returns.</p>
+          <p class="item-code">1017271-wrch-19</p>
+        </div>
+        <!--END THIRD ITEM-->
+        <div class="subtotal-block mt-2 pb-4">
+          <div >
+            <p>Subtotal</p>
+            <p class="subtotal-price">$264.72</p>
+          </div>
+          <div>
+            <p>Shipping</p>
+            <p class="shipping">calculated at shipping</p>
+          </div>
+          <div>
+            <p>H.S.T.</p>
+            <p class="hst">calculated at shipping</p>
+          </div>
+        </div>
+        <div class="total-block flex justify-between mt-2">
+          <p>Total</p>
+          <p>$264.72</p>
+        </div>
+      </div>
+    <!-- END ORDER SUMMARY -->
+    </div>
+  </div>
+</div>
+
+
+        
+  <div class="footer">
+    <div class="footer-wrap">
+      <div class="left-footer-part">
+        <p class="help-text">Need help with checkout?</p>
+        <a class="live-chat-btn items-center ">
+          <img class="comment-red mr-1" src="./img/comment.svg" alt="comment">
+          <img class="comment-gray mr-1" src="./img/comment-2.svg" alt="comment">
+          Live Chat
+        </a>
+        <p class="contact">1-877-SOFTMOC (1-877-763-8662)<br>1-800-833-4439</p>
+        <div class="email items-center">
+          <img class="mr-1" src="./img/envelope.svg" alt="email">
+          shoes@softmoc.com
+        </div>
+      </div>
+      </div>
+  </div>
+
+
+
+
+  
+
+    
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEo4xQlgOhMr1cAIGjVZA_ZC1h3BiWRs&callback=GoogleCallback&v=3&libraries=places,geometry"
+      defer
+    ></script>
+  
+  <script>
+    $('#form').parsley();
+  </script>
+  <script type="text/javascript">
+    $(function () {
+      Parsley.addValidator('checkChildren', {
+        messages: {en: 'You must correctly fill at least one of these blocks!'},
+        requirementType: 'integer',
+        validate: function(_value, requirement, instance) {
+          for(var i = 1; i <= requirement; i++)
+            if (instance.parent.isValid({group: 'block-' + i, force: true}))
+              return true; // One section is filled, this check is valid
+          return false; // No section is filled, this validation fails
+        }
+      });
+    
+      Parsley.on('form:submit', function() {
+        GoToShipping();
+        return true; 
+      });
+    
+      $('.demo-form').parsley({
+        inputs: Parsley.options.inputs + ',[data-parsley-check-children]'
+      });
+    });
+    </script>
+
+  <script>
+
+    var formInputs = document.getElementsByClassName('js-input');
+
+    for (var index = 0; index < formInputs.length; index++) {
+      formInputs[index].addEventListener('input', function(){
+        let count = 0;
+
+        for (let j = 0; j < formInputs.length; j++) {
+          if(formInputs[j].value != ''){
+            count++;
+          }
+          if(count == formInputs.length){
+            document.getElementById("js-button").disabled = false;
+          }else{
+            document.getElementById("js-button").disabled = true;
+          }
+        }
+      })
+    }
+
+    function GoogleCallback(){
+      initMap();
+    }
+    //SHIPPING
+    function GoToShipping(){
+      let count = 0;
+
+        for (let j = 0; j < formInputs.length; j++) {
+          if(formInputs[j].classList.contains('parsley-success')){
+            count++;
+          }
+          if(count == formInputs.length){
+            document.getElementById("billing-content").style.display="none";
+            document.getElementById("shipping-content").style.display="block";
+
+            document.getElementById("billing-road").style.display="none";
+            document.getElementById("shipping-road").style.display="block";
+          }
+        }
+        
+        const firstName = document.getElementById('first_name').value;
+        const secondName = document.getElementById('last_name').value;
+        document.getElementById('first-second-name').innerHTML = firstName + ' ' + secondName;
+
+        const number = document.getElementById('telephone-input').value;
+        document.getElementById('telephone-number').innerHTML = number;
+
+        document.getElementById('js-shipping').innerHTML = '$0';
+    }
+    function ReturnBilling(){
+      document.getElementById("billing-content").style.display="block";
+      document.getElementById("shipping-content").style.display="none";
+
+      document.getElementById("billing-road").style.display="block";
+      document.getElementById("shipping-road").style.display="none";
+      document.getElementById('js-shipping').innerHTML = 'calculated at shipping';
+    }
+    //BUTTON ENABLED IF ALL FIELDS NON-EMPTY
+
+    //MAP
+    function getAllStores(){
+      return locations;
+    }
+    function getDistance(gps1, gps2) {
+      
+      const metre = google.maps.geometry.spherical.computeDistanceBetween(gps1,gps2);
+      const km = metre / 1000;
+      return km.toFixed(1);
+    }
+    function updateDistance(location) {
+      
+      shops.map(shop => {
+        shop.distance = parseFloat(getDistance(
+            new google.maps.LatLng(shop.lat, shop.lng),
+            new google.maps.LatLng(location.lat(), location.lng()),
+          ));
+      });
+      
+      
+      function compare( a, b ) {
+        if ( a.distance < b.distance ){
+          return -1;
+        }
+        if ( a.distance > b.distance ){
+          return 1;
+        }
+        return 0;
+      }
+      shops.sort(compare);
+      
+      console.log(shops);
+      selectNearestShops();
+    }
+    var prevInfoWindow;
+
+    function selectNearestShops(){
+      const shopsDivs = document.getElementsByClassName('shop-info-block');
+      console.log(shops);
+      for (let i=0;i<shopsDivs.length;i++) {
+        let div = shopsDivs[i];
+        const modal_name = div.children[0];
+        const modal_address = div.children[1];
+        const modal_anotherInfo = div.children[2];
+        const modal_distance = div.children[3];
+
+        modal_name.innerHTML = shops[i].details.name;
+        modal_address.innerHTML = shops[i].details.address;
+        modal_anotherInfo.innerHTML = shops[i].details.name;
+        modal_distance.innerHTML = shops[i].distance + " km. away";
+        
+        div.addEventListener('click', function(){
+          shops[i].showWindow();
+        })
+        
+      }
+    }
+    
+      var map, modal_map;
+      var shops;
+
+      function initMap() {
+        
+        //Set all shop markers on modal map
+        shops = getAllStores();
+
+        //Shipping map
+        map = new google.maps.Map(document.getElementById("ship-to-map"), {
+          center: { lat: 55.1308174, lng: -124.866353 },
+          zoom: 10,
+        });
+
+        //Modal map
+        modal_map = new google.maps.Map(document.getElementById("modal-map"), {
+          center: { lat: 55.1308174, lng: -124.866353 },
+          zoom: 10,
+        });
+
+        shops.forEach(shop => {
+          const contentString = "<div style='text-align: center;font-size: 17px;'>"+
+                    "<p style='font-weight: bold;'>"+shop.details.name+"</p>"+
+                    "<p>"+shop.details.address+"</p>"+
+                    "<p>"+shop.details.city+", "+shop.details.state + "," +shop.details.zip+"</p>"+
+                    "<p>"+shop.details.phone+"</p></div>";
+
+          shop.infoWindow = new google.maps.InfoWindow({
+            content: contentString,
+          });
+          
+          shop.marker = new google.maps.Marker({
+              map: modal_map,
+              title: shop.details.name,
+              icon: './img/s-logo.png',
+              position: new google.maps.LatLng(shop.lat, shop.lng)
+            });
+
+            shop.marker.addListener("click", () => {
+              shop.showWindow();
+            });
+            
+            shop.showWindow = function(){
+              if(prevInfoWindow){
+                prevInfoWindow.close();
+              }
+              shop.infoWindow.open(modal_map, shop.marker);
+              prevInfoWindow = shop.infoWindow;
+            }
+        });
+        console.log(shops);
+        
+
+        var options = {
+          componentRestrictions: {country: 'ca'}
+        };
+
+        var input = document.getElementById('autocomplete');
+        var searchBox = new google.maps.places.Autocomplete(input, options);
+        
+
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+        modal_map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+
+
+        let placeSearch;
+        let autocomplete;
+        
+        const componentForm = {
+          //for autocomplete
+          locality: "long_name",
+          administrative_area_level_1: "short_name",
+          postal_code: "short_name",
+        };
+        const additionalInfo ={
+          //for additional info
+          street_number: "long_name",
+          route: "long_name",
+          locality: "long_name",
+          administrative_area_level_1: "short_name",
+          postal_code: "short_name",
+          country: "long_name"
+        }
+
+        searchBox.addListener('place_changed', function () {
+          var places = searchBox.getPlace();
+          
+          if (places.length == 0)
+            return;
+
+          markers.forEach(function (m) { m.setMap(null); });
+          markers = [];
+
+          var bounds = new google.maps.LatLngBounds();
+
+            if (!places.geometry)
+              return;
+
+            markers.push(new google.maps.Marker({
+              map: map,
+              title: places.name,
+              icon:'./img/user-location.png',
+              position: places.geometry.location
+            }));
+            markers.push(new google.maps.Marker({
+              map: modal_map,
+              title: places.name,
+              icon:'./img/user-location.png',
+              position: places.geometry.location
+            }));
+
+            if (places.geometry.viewport)
+              bounds.union(places.geometry.viewport);
+            else
+              bounds.extend(places.geometry.location);
+          
+          
+          map.fitBounds(bounds);
+          modal_map.fitBounds(bounds);
+
+
+          //AUTOFILL
+
+          for (const component in componentForm) {
+            document.getElementById(component).value = "";
+          } // Get each component of the address from the place details,
+          // and then fill-in the corresponding field on the form.
+
+          
+          places.address_components.map(component => {
+            const addressType = component.types[0];
+
+            if (componentForm[addressType]) {
+              const val = component[componentForm[addressType]];
+              document.getElementById(addressType).value = val;
+            }
+          })
+
+          //FILL SHIPPING ADDITIONAL INFO
+          
+          const infoArray = []
+
+          places.address_components.map(component => {
+            const addressType = component.types[0];
+
+            if (additionalInfo[addressType]) {
+              const val = component[additionalInfo[addressType]];
+              infoArray.push(val);
+            }
+          })
+
+          const additional_info = {
+            number: infoArray[0],
+            street: infoArray[1],
+            locality: infoArray[2],
+            area: infoArray[3],
+            country: infoArray[4],
+            code: infoArray[5]
+          };
+          document.getElementById('street').innerHTML = additional_info.number + ' ' + additional_info.street;
+          document.getElementById('city-and-region').innerHTML = additional_info.locality + ', ' + additional_info.area;
+          document.getElementById('code-and-country').innerHTML = additional_info.code + ', ' + additional_info.country;
+          
+          //Update distance between shops and client
+         
+          updateDistance(places.geometry.location);
+          
+        });
+      }  
+
+    const expressShipping_elem = document.getElementById('express_shipping');
+
+
+    //RADIO BUTTONS 
+    var dest_radios = document.getElementsByClassName('dest-radio');
+    var dest_labels = document.getElementsByClassName('dest_label');
+
+    var ship_radios = document.getElementsByClassName('ship-radio');
+    var ship_labels = document.getElementsByClassName('ship_label');
+
+
+    
+    for(let item of dest_radios){
+      item.addEventListener('change', function(){
+        for(let item of dest_labels){
+          item.classList.remove('active-lbl');
+          item.classList.remove('not-active-lbl')
+        }
+        for (let i = 0; i < dest_radios.length; i++) {
+          var lbl = document.getElementsByClassName('dest_label')[i];
+         if(dest_radios[i].checked){
+          lbl.classList.add('active-lbl');
+         }else{
+          lbl.classList.add('not-active-lbl');
+         }
+        }
+      })
+    }
+    
+    for(let item of ship_radios){
+      item.addEventListener('change', function(){
+        for(let item of ship_labels){
+          item.classList.remove('active-lbl');
+          item.classList.remove('not-active-lbl')
+        }
+        for (let i = 0; i < ship_radios.length; i++) {
+          var lbl = document.getElementsByClassName('ship_label')[i];
+         if(ship_radios[i].checked){
+          lbl.classList.add('active-lbl');
+         }else{
+          lbl.classList.add('not-active-lbl');
+         }
+        }
+      })
+    }
+
+    function Convert(string){
+      var regex = /[\d|,|.|e|E|\+]+/g;
+      return string.match(regex)[0];
+    }
+    function ExpressMethod(){
+      var expressPrice = Convert(document.getElementById('js-express-price').textContent);
+      var subtotalPrice = Convert(document.getElementById('js-subtotal-price').textContent);
+
+      var totalPrice = parseFloat(subtotalPrice) + parseFloat(expressPrice);
+      document.getElementById('js-total-price').innerHTML = '$' + totalPrice.toFixed(2);
+      document.getElementById('js-shipping').innerHTML = '$' + parseFloat(expressPrice).toFixed(2);
+     
+    }
+    function FreeMethod(){
+      var expressPrice = Convert(document.getElementById('js-express-price').textContent);
+      var subtotalPrice = Convert(document.getElementById('js-total-price').textContent);
+
+      var totalPrice = parseFloat(subtotalPrice) - parseFloat(expressPrice);
+      document.getElementById('js-total-price').innerHTML = '$' + totalPrice.toFixed(2);
+      document.getElementById('js-shipping').innerHTML = '$0';
+     
+    }
+
+    //END OF RADIO BUTTONS 
+
+
+    "use strict";
+
+   // File#: _1_drawer
+// Usage: codyhouse.co/license
+(function() {
+	var Drawer = function(element) {
+		this.element = element;
+		this.content = document.getElementsByClassName('js-drawer__body')[0];
+		this.triggers = document.querySelectorAll('[aria-controls="'+this.element.getAttribute('id')+'"]');
+		this.firstFocusable = null;
+		this.lastFocusable = null;
+		this.selectedTrigger = null;
+		this.isModal = Util.hasClass(this.element, 'js-drawer--modal');
+		this.showClass = "drawer--is-visible";
+		this.initDrawer();
+	};
+
+	Drawer.prototype.initDrawer = function() {
+		var self = this;
+		//open drawer when clicking on trigger buttons
+		if ( this.triggers ) {
+			for(var i = 0; i < this.triggers.length; i++) {
+				this.triggers[i].addEventListener('click', function(event) {
+					event.preventDefault();
+					if(Util.hasClass(self.element, self.showClass)) {
+						self.closeDrawer(event.target);
+						return;
+					}
+					self.selectedTrigger = event.target;
+					self.showDrawer();
+					self.initDrawerEvents();
+
+          document.getElementById('drawer-order').style.display = 'block';
+				});
+			}
+		}
+
+		// if drawer is already open -> we should initialize the drawer events
+		if(Util.hasClass(this.element, this.showClass)) this.initDrawerEvents();
+	};
+
+	Drawer.prototype.showDrawer = function() {
+		var self = this;
+		this.content.scrollTop = 0;
+		Util.addClass(this.element, this.showClass);
+		this.getFocusableElements();
+		Util.moveFocus(this.element);
+		// wait for the end of transitions before moving focus
+		this.element.addEventListener("transitionend", function cb(event) {
+			Util.moveFocus(self.element);
+			self.element.removeEventListener("transitionend", cb);
+		});
+		this.emitDrawerEvents('drawerIsOpen', this.selectedTrigger);
+	};
+  
+
+	Drawer.prototype.closeDrawer = function(target) {
+		Util.removeClass(this.element, this.showClass);
+		this.firstFocusable = null;
+		this.lastFocusable = null;
+		if(this.selectedTrigger) this.selectedTrigger.focus();
+		//remove listeners
+		this.cancelDrawerEvents();
+		this.emitDrawerEvents('drawerIsClose', target);
+
+
+	};
+
+	Drawer.prototype.initDrawerEvents = function() {
+		//add event listeners
+		this.element.addEventListener('keydown', this);
+		this.element.addEventListener('click', this);
+	};
+
+	Drawer.prototype.cancelDrawerEvents = function() {
+		//remove event listeners
+		this.element.removeEventListener('keydown', this);
+		this.element.removeEventListener('click', this);
+	};
+
+	Drawer.prototype.handleEvent = function (event) {
+		switch(event.type) {
+			case 'click': {
+				this.initClick(event);
+			}
+			case 'keydown': {
+				this.initKeyDown(event);
+			}
+		}
+	};
+
+	Drawer.prototype.initKeyDown = function(event) {
+		if( event.keyCode && event.keyCode == 27 || event.key && event.key == 'Escape' ) {
+			//close drawer window on esc
+			this.closeDrawer(false);
+		} else if( this.isModal && (event.keyCode && event.keyCode == 9 || event.key && event.key == 'Tab' )) {
+			//trap focus inside drawer
+			this.trapFocus(event);
+		}
+	};
+
+	Drawer.prototype.initClick = function(event) {
+		//close drawer when clicking on close button or drawer bg layer 
+		if( !event.target.closest('.js-drawer__close') && !Util.hasClass(event.target, 'js-drawer') ) return;
+		event.preventDefault();
+		this.closeDrawer(event.target);
+	};
+
+	Drawer.prototype.trapFocus = function(event) {
+		if( this.firstFocusable == document.activeElement && event.shiftKey) {
+			//on Shift+Tab -> focus last focusable element when focus moves out of drawer
+			event.preventDefault();
+			this.lastFocusable.focus();
+		}
+		if( this.lastFocusable == document.activeElement && !event.shiftKey) {
+			//on Tab -> focus first focusable element when focus moves out of drawer
+			event.preventDefault();
+			this.firstFocusable.focus();
+		}
+	}
+
+	Drawer.prototype.getFocusableElements = function() {
+		//get all focusable elements inside the drawer
+		var allFocusable = this.element.querySelectorAll('[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable], audio[controls], video[controls], summary');
+		this.getFirstVisible(allFocusable);
+		this.getLastVisible(allFocusable);
+	};
+
+	Drawer.prototype.getFirstVisible = function(elements) {
+		//get first visible focusable element inside the drawer
+		for(var i = 0; i < elements.length; i++) {
+			if( elements[i].offsetWidth || elements[i].offsetHeight || elements[i].getClientRects().length ) {
+				this.firstFocusable = elements[i];
+				return true;
+			}
+		}
+	};
+
+	Drawer.prototype.getLastVisible = function(elements) {
+		//get last visible focusable element inside the drawer
+		for(var i = elements.length - 1; i >= 0; i--) {
+			if( elements[i].offsetWidth || elements[i].offsetHeight || elements[i].getClientRects().length ) {
+				this.lastFocusable = elements[i];
+				return true;
+			}
+		}
+	};
+
+	Drawer.prototype.emitDrawerEvents = function(eventName, target) {
+		var event = new CustomEvent(eventName, {detail: target});
+		this.element.dispatchEvent(event);
+	};
+
+	//initialize the Drawer objects
+	var drawer = document.getElementsByClassName('js-drawer');
+	if( drawer.length > 0 ) {
+		for( var i = 0; i < drawer.length; i++) {
+			(function(i){new Drawer(drawer[i]);})(i);
+		}
+	}
+}());
+
+// File#: _1_custom-select
+// Usage: codyhouse.co/license
+(function() {
+	// NOTE: you need the js code only when using the --custom-dropdown variation of the Custom Select component. Default version does nor require JS.
+	
+  var CustomSelect = function(element) {
+		this.element = element;
+    this.select = this.element.getElementsByTagName('select')[0];
+    this.optGroups = this.select.getElementsByTagName('optgroup');
+		this.options = this.select.getElementsByTagName('option');
+		this.selectedOption = getSelectedOptionText(this);
+		this.selectId = this.select.getAttribute('id');
+		this.trigger = false;
+		this.dropdown = false;
+		this.customOptions = false;
+		this.arrowIcon = this.element.getElementsByTagName('svg');
+		this.label = document.querySelector('[for="'+this.selectId+'"]');
+
+		this.optionIndex = 0; // used while building the custom dropdown
+
+		initCustomSelect(this); // init markup
+		initCustomSelectEvents(this); // init event listeners
+  };
+  
+  function initCustomSelect(select) {
+		// create the HTML for the custom dropdown element
+		select.element.insertAdjacentHTML('beforeend', initButtonSelect(select) + initListSelect(select));
+		
+		// save custom elements
+		select.dropdown = select.element.getElementsByClassName('js-select__dropdown')[0];
+		select.trigger = select.element.getElementsByClassName('js-select__button')[0];
+		select.customOptions = select.dropdown.getElementsByClassName('js-select__item');
+    
+    // hide default select
+    Util.addClass(select.select, 'is-hidden');
+		if(select.arrowIcon.length > 0 ) select.arrowIcon[0].style.display = 'none';
+
+		// place dropdown
+		placeDropdown(select);
+  };
+
+  function initCustomSelectEvents(select) {
+		// option selection in dropdown
+		initSelection(select);
+
+		// click events
+		select.trigger.addEventListener('click', function(){
+			toggleCustomSelect(select, false);
+		});
+		if(select.label) {
+			// move focus to custom trigger when clicking on <select> label
+			select.label.addEventListener('click', function(){
+				Util.moveFocus(select.trigger);
+			});
+		}
+		// keyboard navigation
+		select.dropdown.addEventListener('keydown', function(event){
+			if(event.keyCode && event.keyCode == 38 || event.key && event.key.toLowerCase() == 'arrowup') {
+				keyboardCustomSelect(select, 'prev', event);
+			} else if(event.keyCode && event.keyCode == 40 || event.key && event.key.toLowerCase() == 'arrowdown') {
+				keyboardCustomSelect(select, 'next', event);
+			}
+		});
+		// native <select> element has been updated -> update custom select as well
+		select.element.addEventListener('select-updated', function(event){
+			resetCustomSelect(select);
+		});
+  };
+
+  function toggleCustomSelect(select, bool) {
+    var ariaExpanded;
+		if(bool) {
+			ariaExpanded = bool;
+		} else {
+			ariaExpanded = select.trigger.getAttribute('aria-expanded') == 'true' ? 'false' : 'true';
+		}
+		select.trigger.setAttribute('aria-expanded', ariaExpanded);
+		if(ariaExpanded == 'true') {
+      var selectedOption = getSelectedOption(select);
+      Util.moveFocus(selectedOption); // fallback if transition is not supported
+			select.dropdown.addEventListener('transitionend', function cb(){
+				Util.moveFocus(selectedOption);
+				select.dropdown.removeEventListener('transitionend', cb);
+			});
+			placeDropdown(select); // place dropdown based on available space
+		}
+  };
+
+  function placeDropdown(select) {
+		// remove placement classes to reset position
+		Util.removeClass(select.dropdown, 'select__dropdown--right select__dropdown--up');
+		var triggerBoundingRect = select.trigger.getBoundingClientRect();
+		Util.toggleClass(select.dropdown, 'select__dropdown--right', (document.documentElement.clientWidth - 5 < triggerBoundingRect.left + select.dropdown.offsetWidth));
+    // check if there's enough space up or down
+    var moveUp = (window.innerHeight - triggerBoundingRect.bottom - 5) < triggerBoundingRect.top;
+    Util.toggleClass(select.dropdown, 'select__dropdown--up', moveUp);
+    // check if we need to set a max width
+		var maxHeight = moveUp ? triggerBoundingRect.top - 20 : window.innerHeight - triggerBoundingRect.bottom - 20;
+		// set max-height based on available space
+    select.dropdown.setAttribute('style', 'max-height: '+maxHeight+'px; width: '+triggerBoundingRect.width+'px;');
+	};
+
+  function keyboardCustomSelect(select, direction, event) { // navigate custom dropdown with keyboard
+		event.preventDefault();
+		var index = Util.getIndexInArray(select.customOptions, document.activeElement);
+		index = (direction == 'next') ? index + 1 : index - 1;
+		if(index < 0) index = select.customOptions.length - 1;
+		if(index >= select.customOptions.length) index = 0;
+		Util.moveFocus(select.customOptions[index]);
+  };
+
+  function initSelection(select) { // option selection
+    select.dropdown.addEventListener('click', function(event){
+			var option = event.target.closest('.js-select__item');
+			if(!option) return;
+			selectOption(select, option);
+		});
+	};
+	
+	function selectOption(select, option) {
+		if(option.hasAttribute('aria-selected') && option.getAttribute('aria-selected') == 'true') {
+			// selecting the same option
+			select.trigger.setAttribute('aria-expanded', 'false'); // hide dropdown
+		} else { 
+			var selectedOption = select.dropdown.querySelector('[aria-selected="true"]');
+			if(selectedOption) selectedOption.setAttribute('aria-selected', 'false');
+			option.setAttribute('aria-selected', 'true');
+			select.trigger.getElementsByClassName('js-select__label')[0].textContent = option.textContent;
+			select.trigger.setAttribute('aria-expanded', 'false');
+			// new option has been selected -> update native <select> element _ arai-label of trigger <button>
+			updateNativeSelect(select, option.getAttribute('data-index'));
+			updateTriggerAria(select); 
+		}
+		// move focus back to trigger
+		select.trigger.focus();
+	};
+
+	function updateNativeSelect(select, index) {
+		select.select.selectedIndex = index;
+		select.select.dispatchEvent(new CustomEvent('change', {bubbles: true})); // trigger change event
+	};
+
+	function updateTriggerAria(select) {
+		select.trigger.setAttribute('aria-label', select.options[select.select.selectedIndex].innerHTML+', '+select.label.textContent);
+	};
+
+  function getSelectedOptionText(select) {// used to initialize the label of the custom select button
+		var label = '';
+		if('selectedIndex' in select.select) {
+			label = select.options[select.select.selectedIndex].text;
+		} else {
+			label = select.select.querySelector('option[selected]').text;
+		}
+		return label;
+
+  };
+  
+  function initButtonSelect(select) { // create the button element -> custom select trigger
+		// check if we need to add custom classes to the button trigger
+		var customClasses = select.element.getAttribute('data-trigger-class') ? ' '+select.element.getAttribute('data-trigger-class') : '';
+
+		var label = select.options[select.select.selectedIndex].innerHTML+', '+select.label.textContent;
+	
+    var button = '<button type="button" class="js-select__button select__button'+customClasses+'" aria-label="'+label+'" aria-expanded="false" aria-controls="'+select.selectId+'-dropdown"><span aria-hidden="true" class="js-select__label select__label">'+select.selectedOption+'</span>';
+    if(select.arrowIcon.length > 0 && select.arrowIcon[0].outerHTML) {
+			var clone = select.arrowIcon[0].cloneNode(true);
+      Util.removeClass(clone, 'select__icon');
+      button = button +clone.outerHTML;
+    }
+		
+		return button+'</button>';
+
+  };
+
+  function initListSelect(select) { // create custom select dropdown
+    var list = '<div class="js-select__dropdown select__dropdown" aria-describedby="'+select.selectId+'-description" id="'+select.selectId+'-dropdown">';
+		list = list + getSelectLabelSR(select);
+    if(select.optGroups.length > 0) {
+      for(var i = 0; i < select.optGroups.length; i++) {
+        var optGroupList = select.optGroups[i].getElementsByTagName('option'),
+          optGroupLabel = '<li><span class="select__item select__item--optgroup">'+select.optGroups[i].getAttribute('label')+'</span></li>';
+        list = list + '<ul class="select__list" role="listbox">'+optGroupLabel+getOptionsList(select, optGroupList) + '</ul>';
+      }
+    } else {
+      list = list + '<ul class="select__list" role="listbox">'+getOptionsList(select, select.options) + '</ul>';
+    }
+    return list;
+  };
+
+  function getSelectLabelSR(select) {
+    if(select.label) {
+      return '<p class="sr-only" id="'+select.selectId+'-description">'+select.label.textContent+'</p>'
+    } else {
+      return '';
+    }
+	};
+	
+	function resetCustomSelect(select) {
+		// <select> element has been updated (using an external control) - update custom select
+		var selectedOption = select.dropdown.querySelector('[aria-selected="true"]');
+		if(selectedOption) selectedOption.setAttribute('aria-selected', 'false');
+		var option = select.dropdown.querySelector('.js-select__item[data-index="'+select.select.selectedIndex+'"]');
+		option.setAttribute('aria-selected', 'true');
+		select.trigger.getElementsByClassName('js-select__label')[0].textContent = option.textContent;
+		select.trigger.setAttribute('aria-expanded', 'false');
+		updateTriggerAria(select); 
+	};
+
+  function getOptionsList(select, options) {
+    var list = '';
+    for(var i = 0; i < options.length; i++) {
+			var selected = options[i].hasAttribute('selected') ? ' aria-selected="true"' : ' aria-selected="false"';
+			list = list + '<li><button type="button" class="reset js-select__item select__item select__item--option" role="option" data-value="'+options[i].value+'" '+selected+' data-index="'+select.optionIndex+'">'+options[i].text+'</button></li>';
+			select.optionIndex = select.optionIndex + 1;
+    };
+    return list;
+  };
+
+  function getSelectedOption(select) {
+    var option = select.dropdown.querySelector('[aria-selected="true"]');
+    if(option) return option;
+    else return select.dropdown.getElementsByClassName('js-select__item')[0];
+  };
+
+  function moveFocusToSelectTrigger(select) {
+    if(!document.activeElement.closest('.js-select')) return
+    select.trigger.focus();
+	};
+	
+	function checkCustomSelectClick(select, target) { // close select when clicking outside it
+		if( !select.element.contains(target) ) toggleCustomSelect(select, 'false');
+  };
+  
+  //initialize the CustomSelect objects
+	var customSelect = document.getElementsByClassName('js-select');
+	if( customSelect.length > 0 ) {
+		var selectArray = [];
+		for( var i = 0; i < customSelect.length; i++) {
+			(function(i){selectArray.push(new CustomSelect(customSelect[i]));})(i);
+		}
+
+		// listen for key events
+		window.addEventListener('keyup', function(event){
+			if( event.keyCode && event.keyCode == 27 || event.key && event.key.toLowerCase() == 'escape' ) {
+				// close custom select on 'Esc'
+				selectArray.forEach(function(element){
+					moveFocusToSelectTrigger(element); // if focus is within dropdown, move it to dropdown trigger
+					toggleCustomSelect(element, 'false'); // close dropdown
+				});
+			} 
+		});
+		// close custom select when clicking outside it
+		window.addEventListener('click', function(event){
+			selectArray.forEach(function(element){
+				checkCustomSelectClick(element, event.target);
+			});
+		});
+	}
+}());
+  </script>
+
+<script>
+  // Get the modal
+  var modal = document.getElementById("myModal");
+  
+  // Get the button that opens the modal
+  var btn = document.getElementById("openModal-js");
+  
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+  
+  // When the user clicks the button, open the modal 
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+  
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+  </script>
+
+
+    </div>
+    
+
+</body>
+</html>

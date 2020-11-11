@@ -1,0 +1,1380 @@
+{% extends "../templates/checkout_layout.html" %}
+
+{% block header %}
+    <div class="header shadow ">
+      <div class="header-container md:flex md:justify-between bg-white">
+        <div class="left-col flex justify-between items-center lg:justify-start">
+          <div class="ml-4 right-block">
+            <img class="logo-img" src="./img/softmoc-logo-tm@2x.png" alt="SoftLogo">
+          </div>
+          <div class="security-block flex left-block text-black justify-center mr-4 ">
+            <span class="text-base sm:text-xl">Secure Checkout</span>
+            <img class="lock-img" src="./img/lock.svg" alt="">
+          </div>
+        </div>
+        <div class="hidden right-col md:flex items-center mr-4">
+          <div class="info text-sm mr-4 leading-4">
+            <p>Use your SoftMoc Rewards Points and SAVE!</p>
+            <div class="flex justify-end">
+              <p class="text-blue-600 text-right mr-1">Learn More</p>
+              <img src="./img/info-square.svg" alt="info">
+            </div>
+          </div>
+          <img src="./img/softmoc-rewards.png" alt="reward">
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{%block content%}
+    <div class="under-header">
+      <div class=" flex justify-between items-center py-2">
+        <div class="ml-4">
+          <p class="text-xs sm:text-base"><a class="link" href="#">Log In</a> or <a class="link" href="#">Create An Account</a></p>
+        </div>
+        <div class="mr-4">
+          <button aria-controls="drawer-cart-id" class="btn btn-primary">Order Summary</button>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="main">
+      <div class="left-main-col">
+        <div class="road-container pt-4" id="billing-road">
+          <div class="road flex justify-between mx-4 ">
+    
+            <div class="road-item active flex items-center z-10 pr-1">
+              <div class="rounded-num"><span>1</span></div>
+              <p class="ml-1 text-base sm:text-xl">Billing</p>
+            </div>
+    
+            <div class="road-item flex items-center z-10 px-1" onclick="GoToShipping()">
+              <div class="rounded-num">2</div>
+              <p class="ml-1 text-base sm:text-xl">Shipping</p>
+            </div>
+    
+            <div  class="road-item flex items-center z-10 pl-1">
+              <div class="rounded-num">3</div>
+              <p class="ml-1 text-base sm:text-xl">Payment</p>
+            </div>
+  
+          </div>
+        </div>
+        
+        <div id="billing-content" class="main-part">
+          <p class="log-in-text text-xs sm:text-base">For a faster checkout <a class="link" href="#">Log In</a> or <a class="link" href="#">Create An Account</a></p>
+          <form onsubmit="return false" id="form" class="input-group  shadow p-2 demo-form">
+            <p class="warning-text  text-red-600">All Fields Required</p>
+  
+            <div class="inputs-row">
+
+              <div id="first-input" class="input-wrap">
+                <input value="Ivan" required  id="first_name" data-parsley-length="[4, 20]" data-parsley-group="block-1" name="firstname"  class="js-input form-control mt-0" type="text" placeholder="First Name">
+              </div>
+              
+              <div class="input-wrap">
+                <input value="Korzhov" required  id="last_name" data-parsley-length="[4, 20]" data-parsley-group="block-1" class="form-control mt-0 js-input" type="text" placeholder="Last Name">
+              </div>
+            </div>
+            
+            <div>
+              <input required   id="autocomplete" class="address js-input" type="text" placeholder="Address">
+            </div>
+
+            <div class="inputs-row">
+              <div class="input-wrap">
+                <input required  id="postal_code" name="PostalCode" class="postal_code js-input" type="text" placeholder="Postal Code">
+              </div>
+              
+              <div class="input-wrap">
+                <input required  id="locality" name="City" class="city js-input" type="text" placeholder="City">
+              </div>
+            </div>
+            
+            <div class="inputs-row">
+              <div class="input-wrap">
+                <select class="js-input" required id="administrative_area_level_1" name="administrative_area_level_1">
+                  <option value="" selected disabled hidden>Select Province / Territory</option>
+                  <option value="AB">Alberta</option>
+                  <option value="BC">British Columbia</option>
+                  <option value="MB">Manitoba</option>
+                  <option value="NB">New Brunswick</option>
+                  <option value="NL">Newfoundland and Labrador</option>
+                  <option value="NS">Nova Scotia</option>
+                  <option value="ON">Ontario</option>
+                  <option value="PE">Prince Edward Island</option>
+                  <option value="QC">Quebec</option>
+                  <option value="SK">Saskatchewan</option>
+                </select>
+              </div>
+      
+              <div class="input-wrap">
+                <select required class="js-input">
+                  <option value="" selected disabled hidden value="Canada">Canada</option>
+                  <option value="Canada-NT">Canada-NT</option>
+                  <option value="Canada-NU">Canada-NU</option>
+                  <option value="Canada-YT">Canada-YT</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="inputs-row">
+              <div class="input-wrap">
+                <input value="4844448888" name="telephone-input" required class="js-input"  id="telephone-input" type="text" placeholder="Telephone">
+                <img class="question-icon" src="./img/question-circle.svg" alt="">
+                <div class="alert-box">
+                  Telephone number will only be used if there is a problem with your order. It will not be shared or used for any other purpose.
+                </div>
+              </div>
+              <div class="input-wrap" id="ml-1rem">
+                <input value="korzhoff.i@gmail.com" class="js-input" required type="email" id="email-input" type="text" placeholder="Email">
+                <img class="question-icon" src="./img/question-circle.svg" alt="">
+                <div class="alert-box">
+                  Unless you are a member of our E-Mail List, your e-mail address will only be used for updates regarding your order.
+                </div>
+              </div>
+            </div>
+  
+          </form>
+  
+          <div class="navigation">
+            <div class="btn-container">
+              <button disabled id="js-button" form="form" class="btn-continue validate">
+                Continue to Shipping
+                <img src="./img/chevron-right2.png" alt="">
+              </button>
+            </div>
+  
+            <a class="return-link" href="#" >
+              <img src="./img/chevron-right.svg" alt="">
+              Return to Previous Page
+            </a>
+          </div>
+        </div>
+
+
+        <div class="road-container pt-4" id="shipping-road">
+          <div class="road flex justify-between mx-4 ">
+    
+            <div class="road-item active flex items-center z-10 pr-1" onclick="ReturnBilling()">
+              <div class="rounded-num check-round"><span>
+                <img id="check-img" src="./img/check.png" alt=""></span>
+              </div>
+              <p class="ml-1 text-base sm:text-xl">Billing</p>
+            </div>
+    
+            <div class="road-item active flex items-center z-10 px-1">
+              <div class="rounded-num">2</div>
+              <p class="ml-1 text-base sm:text-xl">Shipping</p>
+            </div>
+    
+            <div  class="road-item flex items-center z-10 pl-1">
+              <div class="rounded-num">3</div>
+              <p class="ml-1 text-base sm:text-xl">Payment</p>
+            </div>
+  
+          </div>
+        </div>
+
+        <div id="shipping-content" class="main-part">
+          <p class="shipping-title first-title">
+            Choose Your Shipping Destination:
+          </p>
+          <div class="destination-block">
+              <label class="desctination-label" for="billing-address">
+                <input checked class="dest-radio" id="billing-address" type="radio" name="destination">
+                <span class="text_label active-lbl dest_label">My Billing Address</span>
+              </label>
+            
+            
+              <label id="openModal-js" class="desctination-label" for="softmoc-store">
+                <input class="dest-radio" id="softmoc-store" type="radio" name="destination" >
+                <span class="text_label not-active-lbl dest_label">SoftMoc Store</span>
+                <span class="free">FREE</span>
+              </label>
+            
+            
+              <label class="desctination-label" for="alternate-address">
+                <input class="dest-radio" id="alternate-address" type="radio" name="destination">
+                <span class="text_label not-active-lbl dest_label">Alternate Address</span>
+              </label>
+            
+            
+              <label class="desctination-label" for="ups-access-point">
+                <input class="dest-radio" id="ups-access-point" type="radio" name="destination">
+                <span class="text_label not-active-lbl dest_label">UPS Access Point</span>
+              </label>
+          </div>
+
+          <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <div id="modal-header">
+                <span id="softmoc-modal">SoftMoc Store</span>
+                
+                <button class="close-btn close">
+                  <img class="close-img" src="./img/close.png" alt="">
+                </button>
+              </div>
+
+              <p id="request-text">Please select a store from the list or the interactive map below</p>
+
+              <div id="modal-main">
+                <div id="shops-info-block">
+                  <div class="shop-info-block">
+                    <p class="softmoc-modal-name">Chinook Centre</p>
+                    <p class="softmoc-modal-address">3625 Shaganappi Trail NW, Unit R049</p>
+                    <p class="softmoc-modal-anotherInfo">Regina, SK, S4P 3Y6</p>
+                    <p class="softmoc-modal-distance">0.6 km. away</p>
+                  </div>
+                  <div class="shop-info-block">
+                    <p class="softmoc-modal-name">Market Mall</p>
+                    <p class="softmoc-modal-address">33 Heritage Meadows Way S.E., Unit 610</p>
+                    <p class="softmoc-modal-anotherInfo">Regina, SK, S4P 3Y6</p>
+                    <p class="softmoc-modal-distance">0.6 km. away</p>
+                  </div>
+                  <div class="shop-info-block">
+                    <p class="softmoc-modal-name">Shoe Rack Deerfoot Meadows</p>
+                    <p class="softmoc-modal-address">100 Anderson Road SE - Unit 152</p>
+                    <p class="softmoc-modal-anotherInfo">Regina, SK, S4P 3Y6</p>
+                    <p class="softmoc-modal-distance">0.6 km. away</p>
+                  </div>
+                  <div class="shop-info-block">
+                    <p class="softmoc-modal-name">Southcentre Mall</p>
+                    <p class="softmoc-modal-address">2525-36th Street N.E., Unit 121</p>
+                    <p class="softmoc-modal-anotherInfo">Regina, SK, S4P 3Y6</p>
+                    <p class="softmoc-modal-distance">0.6 km. away</p>
+                  </div>
+                </div>
+                <div id="modal-map">
+
+                </div>
+              </div>
+            </div>
+          
+          </div>
+          
+
+          <p class="shipping-title second-title">
+            Your Order Will Ship To:
+          </p>
+
+          <div class="ship-to-block">
+            <div class="shipping-info-block">
+              <p id="first-second-name"></p>
+              
+              <p id="street" class="detail-info"></p>
+              <p id="city-and-region" class="detail-info"></p>
+              <p id="code-and-country" class="detail-info"></p>
+              <p id="telephone-number" class="detail-info"></p>
+
+              <a class="edit-link" href="#" onclick="ReturnBilling()">Edit</a>
+            </div>
+            <div id="ship-to-map"></div>
+          </div>
+
+          <p class="shipping-title second-title">
+            Shipping Method:
+          </p>
+
+          <div id="method-block" class="destination-block">
+            <label id="border-custom" class="desctination-label" for="standard_shipping" >
+              <input  onclick="FreeMethod()" class="ship-radio" id="standard_shipping" type="radio" name="shipping-method" checked>
+              <span class="text_label active-lbl ship_label">
+                Standard Shipping<br>
+                <p class="estimated-date">Estimated by Feb 05</p>
+              </span>
+              <span class="additional-info">FREE</span>
+            </label>
+            <label class="desctination-label" for="express_shipping" style="border: none;" name="ship-method">
+              <input onclick="ExpressMethod()" class="ship-radio" id="express_shipping" type="radio" name="shipping-method">
+              <span class="text_label not-active-lbl ship_label">
+                Express Shipping<br>
+                <p class="estimated-date">Estimated by Feb 03</p>
+              </span>
+              <span id="js-express-price" class="additional-info">$7.08</span>
+            </label>
+          </div>
+
+          <div class="navigation">
+            <div class="btn-container">
+              <button class="btn-continue">
+                Continue to Payment
+                <img src="./img/chevron-right2.png" alt="">
+              </button>
+            </div>
+  
+            <a class="return-link" href="#" onclick="ReturnBilling()">
+              <img src="./img/chevron-right.svg" alt="">
+              Return to Previous Page
+            </a>
+          </div>
+        </div>
+
+      </div>
+      <div class="right-main-col">
+        <!-- ORDER SUMMARY -->
+      <div class="order-summary">
+        <div class="order-header">
+          <p class="order-title">Order Summary</p>
+          <div class="coupon-block">
+            <input class="coupon-input" type="text" placeholder="Coupon Code">
+            <button class="coupon-btn">APPLY</button>
+          </div>
+        </div>
+        <!-- FIRST ITEM -->
+        <div class="order-item mt-5">
+          <div class="left-block description-item">
+            <img src="./img/172-01_SSS.png" alt="">
+            <div class="size-block">
+              <p class="item-name">Duray</p>
+                <div class="select-row">
+                  <div class="size">
+                    <p>Size:</p>
+                    <select name="cart_size" id="cart_size">
+                      <option value="8.5">8.5 Men's</option>
+                      <option value="9.0">9 Men's</option>
+                      <option value="9.5">9.5 Men's</option>
+                      <option value="10.0">10 Men's</option>
+                      <option selected="" value="10.5">10.5 Men's</option>
+                      <option value="11.0">11 Men's</option>
+                      <option value="11.5">11.5 Men's</option>
+                      <option value="12.0">12 Men's</option>
+                      <option value="13.0">13 Men's</option>
+                      <option value="14.0">14 Men's</option>
+                      <option value="15.0">15 Men's</option>
+                    </select>
+                  </div>
+                  <div class="quantity">
+                    <p>Qty:</p>
+                    <select name="cart_qty" id="cart_qty">
+                      <option selected="1" value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="right-block text-right price-block">
+            <img class="delete-icon" src="./img/times.svg" alt="">
+            <div class="price">
+              <p class="full-price">$12.99</p>
+              <p class="sale-price">$9.74</p>
+            </div>
+            
+          </div>
+        </div>
+        <div class="aditional-info flex justify-between mt-5 pb-5">
+          <p class="free-delievery">Qualifies for FREE Shipping & Returns.</p>
+          <p class="item-code">1017271-wrch-19</p>
+        </div>
+        <!--END FIRST ITEM-->
+
+        <!-- SECOND ITEM -->
+        <div class="order-item mt-5">
+          <div class="left-block description-item">
+            <img src="./img/1017271-WRCH-19_SSS.png" alt="">
+            <div class="size-block">
+              <p class="item-name">Fraas</p>
+                <div class="select-row">
+                  <div class="quantity">
+                    <p>Qty:</p>
+                    <select name="cart_qty" id="cart_qty">
+                      <option selected="1" value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="right-block text-right  price-block">
+            <img src="./img/times.svg" alt="delete">
+              <div class="price">
+                <p class="full-price">$59.99</p>
+                <p class="sale-price">$29.99</p>
+              </div>
+          </div>
+        </div>
+        <div class="aditional-info flex justify-between mt-5 pb-5">
+          <p class="free-delievery">Qualifies for FREE Shipping & Returns.</p>
+          <p class="item-code">1017271-wrch-19</p>
+        </div>
+        <!--END SECOND ITEM-->
+
+        <!-- THIRD ITEM -->
+        <div class="order-item mt-5">
+          <div class="left-block description-item">
+            <img src="./img/Sapog.png" alt="">
+            <div class="size-block">
+              <p class="item-name">UGG</p>
+                <div class="select-row">
+                  <div class="size">
+                    <p>Size:</p>
+                    <select name="cart_size" id="cart_size">
+                      <option value="8.5">8.5 Men's</option>
+                      <option value="9.0">9 Men's</option>
+                      <option value="9.5">9.5 Men's</option>
+                      <option value="10.0">10 Men's</option>
+                      <option selected="" value="10.5">10.5 Men's</option>
+                      <option value="11.0">11 Men's</option>
+                      <option value="11.5">11.5 Men's</option>
+                      <option value="12.0">12 Men's</option>
+                      <option value="13.0">13 Men's</option>
+                      <option value="14.0">14 Men's</option>
+                      <option value="15.0">15 Men's</option>
+                    </select>
+                  </div>
+                  <div class="quantity">
+                    <p>Qty:</p>
+                    <select name="cart_qty" id="cart_qty">
+                      <option selected="1" value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="right-block text-right  price-block">
+            <img src="./img/times.svg" alt="delete">
+            <div class="price">
+              <p style="color: black;" class="full-price">$224.99</p>
+            </div>
+            
+          </div>
+        </div>
+        <div class="aditional-info flex justify-between mt-5 pb-5">
+          <p class="free-delievery">Qualifies for FREE Shipping & Returns.</p>
+          <p class="item-code">1017271-wrch-19</p>
+        </div>
+        <!--END THIRD ITEM-->
+        <div class="subtotal-block mt-2 pb-4">
+          <div >
+            <p>Subtotal</p>
+            <p id="js-subtotal-price" class="subtotal-price">$264.72</p>
+          </div>
+          <div>
+            <p>Shipping</p>
+            <p id="js-shipping" class="shipping">calculated at shipping</p>
+          </div>
+          <div>
+            <p>H.S.T.</p>
+            <p class="hst">calculated at shipping</p>
+          </div>
+        </div>
+        <div class="total-block flex justify-between mt-2">
+          <p>Total</p>
+          <p id="js-total-price">$264.72</p>
+        </div>
+      </div>
+    <!-- END ORDER SUMMARY -->
+      </div>
+      
+    </div>
+    
+
+{% endblock %}
+
+{%block footer %}
+  <div class="footer">
+    <div class="footer-wrap">
+      <div class="left-footer-part">
+        <p class="help-text">Need help with checkout?</p>
+        <a class="live-chat-btn items-center ">
+          <img class="comment-red mr-1" src="./img/comment.svg" alt="comment">
+          <img class="comment-gray mr-1" src="./img/comment-2.svg" alt="comment">
+          Live Chat
+        </a>
+        <p class="contact">1-877-SOFTMOC (1-877-763-8662)<br>1-800-833-4439</p>
+        <div class="email items-center">
+          <img class="mr-1" src="./img/envelope.svg" alt="email">
+          shoes@softmoc.com
+        </div>
+      </div>
+      </div>
+  </div>
+
+
+
+
+  
+
+    
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEo4xQlgOhMr1cAIGjVZA_ZC1h3BiWRs&callback=GoogleCallback&v=3&libraries=places,geometry"
+      defer
+    ></script>
+  
+  <script>
+    $('#form').parsley();
+  </script>
+  <script type="text/javascript">
+    $(function () {
+      Parsley.addValidator('checkChildren', {
+        messages: {en: 'You must correctly fill at least one of these blocks!'},
+        requirementType: 'integer',
+        validate: function(_value, requirement, instance) {
+          for(var i = 1; i <= requirement; i++)
+            if (instance.parent.isValid({group: 'block-' + i, force: true}))
+              return true; // One section is filled, this check is valid
+          return false; // No section is filled, this validation fails
+        }
+      });
+    
+      Parsley.on('form:submit', function() {
+        GoToShipping();
+        return true; 
+      });
+    
+      $('.demo-form').parsley({
+        inputs: Parsley.options.inputs + ',[data-parsley-check-children]'
+      });
+    });
+    </script>
+
+  <script>
+
+    var formInputs = document.getElementsByClassName('js-input');
+
+    for (var index = 0; index < formInputs.length; index++) {
+      formInputs[index].addEventListener('input', function(){
+        let count = 0;
+
+        for (let j = 0; j < formInputs.length; j++) {
+          if(formInputs[j].value != ''){
+            count++;
+          }
+          if(count == formInputs.length){
+            document.getElementById("js-button").disabled = false;
+          }else{
+            document.getElementById("js-button").disabled = true;
+          }
+        }
+      })
+    }
+
+    function GoogleCallback(){
+      initMap();
+    }
+    //SHIPPING
+    function GoToShipping(){
+      let count = 0;
+
+        for (let j = 0; j < formInputs.length; j++) {
+          if(formInputs[j].classList.contains('parsley-success')){
+            count++;
+          }
+          if(count == formInputs.length){
+            document.getElementById("billing-content").style.display="none";
+            document.getElementById("shipping-content").style.display="block";
+
+            document.getElementById("billing-road").style.display="none";
+            document.getElementById("shipping-road").style.display="block";
+          }
+        }
+        
+        const firstName = document.getElementById('first_name').value;
+        const secondName = document.getElementById('last_name').value;
+        document.getElementById('first-second-name').innerHTML = firstName + ' ' + secondName;
+
+        const number = document.getElementById('telephone-input').value;
+        document.getElementById('telephone-number').innerHTML = number;
+
+        document.getElementById('js-shipping').innerHTML = '$0';
+    }
+    function ReturnBilling(){
+      document.getElementById("billing-content").style.display="block";
+      document.getElementById("shipping-content").style.display="none";
+
+      document.getElementById("billing-road").style.display="block";
+      document.getElementById("shipping-road").style.display="none";
+      document.getElementById('js-shipping').innerHTML = 'calculated at shipping';
+    }
+    //BUTTON ENABLED IF ALL FIELDS NON-EMPTY
+
+    //MAP
+    function getAllStores(){
+      return locations;
+    }
+    function getDistance(gps1, gps2) {
+      
+      const metre = google.maps.geometry.spherical.computeDistanceBetween(gps1,gps2);
+      const km = metre / 1000;
+      return km.toFixed(1);
+    }
+    function updateDistance(location) {
+      
+      shops.map(shop => {
+        shop.distance = parseFloat(getDistance(
+            new google.maps.LatLng(shop.lat, shop.lng),
+            new google.maps.LatLng(location.lat(), location.lng()),
+          ));
+      });
+      
+      
+      function compare( a, b ) {
+        if ( a.distance < b.distance ){
+          return -1;
+        }
+        if ( a.distance > b.distance ){
+          return 1;
+        }
+        return 0;
+      }
+      shops.sort(compare);
+      
+      console.log(shops);
+      selectNearestShops();
+    }
+    var prevInfoWindow;
+
+    function selectNearestShops(){
+      const shopsDivs = document.getElementsByClassName('shop-info-block');
+      console.log(shops);
+      for (let i=0;i<shopsDivs.length;i++) {
+        let div = shopsDivs[i];
+        const modal_name = div.children[0];
+        const modal_address = div.children[1];
+        const modal_anotherInfo = div.children[2];
+        const modal_distance = div.children[3];
+
+        modal_name.innerHTML = shops[i].details.name;
+        modal_address.innerHTML = shops[i].details.address;
+        modal_anotherInfo.innerHTML = shops[i].details.name;
+        modal_distance.innerHTML = shops[i].distance + " km. away";
+        
+        div.addEventListener('click', function(){
+          shops[i].showWindow();
+        })
+        
+      }
+    }
+    
+      var map, modal_map;
+      var shops;
+
+      function initMap() {
+        
+        //Set all shop markers on modal map
+        shops = getAllStores();
+
+        //Shipping map
+        map = new google.maps.Map(document.getElementById("ship-to-map"), {
+          center: { lat: 55.1308174, lng: -124.866353 },
+          zoom: 10,
+        });
+
+        //Modal map
+        modal_map = new google.maps.Map(document.getElementById("modal-map"), {
+          center: { lat: 55.1308174, lng: -124.866353 },
+          zoom: 10,
+        });
+
+        shops.forEach(shop => {
+          const contentString = "<div style='text-align: center;font-size: 17px;'>"+
+                    "<p style='font-weight: bold;'>"+shop.details.name+"</p>"+
+                    "<p>"+shop.details.address+"</p>"+
+                    "<p>"+shop.details.city+", "+shop.details.state + "," +shop.details.zip+"</p>"+
+                    "<p>"+shop.details.phone+"</p></div>";
+
+          shop.infoWindow = new google.maps.InfoWindow({
+            content: contentString,
+          });
+          
+          shop.marker = new google.maps.Marker({
+              map: modal_map,
+              title: shop.details.name,
+              icon: './img/s-logo.png',
+              position: new google.maps.LatLng(shop.lat, shop.lng)
+            });
+
+            shop.marker.addListener("click", () => {
+              shop.showWindow();
+            });
+            
+            shop.showWindow = function(){
+              if(prevInfoWindow){
+                prevInfoWindow.close();
+              }
+              shop.infoWindow.open(modal_map, shop.marker);
+              prevInfoWindow = shop.infoWindow;
+            }
+        });
+        console.log(shops);
+        
+
+        var options = {
+          componentRestrictions: {country: 'ca'}
+        };
+
+        var input = document.getElementById('autocomplete');
+        var searchBox = new google.maps.places.Autocomplete(input, options);
+        
+
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+        modal_map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+
+
+        let placeSearch;
+        let autocomplete;
+        
+        const componentForm = {
+          //for autocomplete
+          locality: "long_name",
+          administrative_area_level_1: "short_name",
+          postal_code: "short_name",
+        };
+        const additionalInfo ={
+          //for additional info
+          street_number: "long_name",
+          route: "long_name",
+          locality: "long_name",
+          administrative_area_level_1: "short_name",
+          postal_code: "short_name",
+          country: "long_name"
+        }
+
+        searchBox.addListener('place_changed', function () {
+          var places = searchBox.getPlace();
+          
+          if (places.length == 0)
+            return;
+
+          markers.forEach(function (m) { m.setMap(null); });
+          markers = [];
+
+          var bounds = new google.maps.LatLngBounds();
+
+            if (!places.geometry)
+              return;
+
+            markers.push(new google.maps.Marker({
+              map: map,
+              title: places.name,
+              icon:'./img/user-location.png',
+              position: places.geometry.location
+            }));
+            markers.push(new google.maps.Marker({
+              map: modal_map,
+              title: places.name,
+              icon:'./img/user-location.png',
+              position: places.geometry.location
+            }));
+
+            if (places.geometry.viewport)
+              bounds.union(places.geometry.viewport);
+            else
+              bounds.extend(places.geometry.location);
+          
+          
+          map.fitBounds(bounds);
+          modal_map.fitBounds(bounds);
+
+
+          //AUTOFILL
+
+          for (const component in componentForm) {
+            document.getElementById(component).value = "";
+          } // Get each component of the address from the place details,
+          // and then fill-in the corresponding field on the form.
+
+          
+          places.address_components.map(component => {
+            const addressType = component.types[0];
+
+            if (componentForm[addressType]) {
+              const val = component[componentForm[addressType]];
+              document.getElementById(addressType).value = val;
+            }
+          })
+
+          //FILL SHIPPING ADDITIONAL INFO
+          
+          const infoArray = []
+
+          places.address_components.map(component => {
+            const addressType = component.types[0];
+
+            if (additionalInfo[addressType]) {
+              const val = component[additionalInfo[addressType]];
+              infoArray.push(val);
+            }
+          })
+
+          const additional_info = {
+            number: infoArray[0],
+            street: infoArray[1],
+            locality: infoArray[2],
+            area: infoArray[3],
+            country: infoArray[4],
+            code: infoArray[5]
+          };
+          document.getElementById('street').innerHTML = additional_info.number + ' ' + additional_info.street;
+          document.getElementById('city-and-region').innerHTML = additional_info.locality + ', ' + additional_info.area;
+          document.getElementById('code-and-country').innerHTML = additional_info.code + ', ' + additional_info.country;
+          
+          //Update distance between shops and client
+         
+          updateDistance(places.geometry.location);
+          
+        });
+      }  
+
+    const expressShipping_elem = document.getElementById('express_shipping');
+
+
+    //RADIO BUTTONS 
+    var dest_radios = document.getElementsByClassName('dest-radio');
+    var dest_labels = document.getElementsByClassName('dest_label');
+
+    var ship_radios = document.getElementsByClassName('ship-radio');
+    var ship_labels = document.getElementsByClassName('ship_label');
+
+
+    
+    for(let item of dest_radios){
+      item.addEventListener('change', function(){
+        for(let item of dest_labels){
+          item.classList.remove('active-lbl');
+          item.classList.remove('not-active-lbl')
+        }
+        for (let i = 0; i < dest_radios.length; i++) {
+          var lbl = document.getElementsByClassName('dest_label')[i];
+         if(dest_radios[i].checked){
+          lbl.classList.add('active-lbl');
+         }else{
+          lbl.classList.add('not-active-lbl');
+         }
+        }
+      })
+    }
+    
+    for(let item of ship_radios){
+      item.addEventListener('change', function(){
+        for(let item of ship_labels){
+          item.classList.remove('active-lbl');
+          item.classList.remove('not-active-lbl')
+        }
+        for (let i = 0; i < ship_radios.length; i++) {
+          var lbl = document.getElementsByClassName('ship_label')[i];
+         if(ship_radios[i].checked){
+          lbl.classList.add('active-lbl');
+         }else{
+          lbl.classList.add('not-active-lbl');
+         }
+        }
+      })
+    }
+
+    function Convert(string){
+      var regex = /[\d|,|.|e|E|\+]+/g;
+      return string.match(regex)[0];
+    }
+    function ExpressMethod(){
+      var expressPrice = Convert(document.getElementById('js-express-price').textContent);
+      var subtotalPrice = Convert(document.getElementById('js-subtotal-price').textContent);
+
+      var totalPrice = parseFloat(subtotalPrice) + parseFloat(expressPrice);
+      document.getElementById('js-total-price').innerHTML = '$' + totalPrice.toFixed(2);
+      document.getElementById('js-shipping').innerHTML = '$' + parseFloat(expressPrice).toFixed(2);
+     
+    }
+    function FreeMethod(){
+      var expressPrice = Convert(document.getElementById('js-express-price').textContent);
+      var subtotalPrice = Convert(document.getElementById('js-total-price').textContent);
+
+      var totalPrice = parseFloat(subtotalPrice) - parseFloat(expressPrice);
+      document.getElementById('js-total-price').innerHTML = '$' + totalPrice.toFixed(2);
+      document.getElementById('js-shipping').innerHTML = '$0';
+     
+    }
+
+    //END OF RADIO BUTTONS 
+
+
+    "use strict";
+
+   // File#: _1_drawer
+// Usage: codyhouse.co/license
+(function() {
+	var Drawer = function(element) {
+		this.element = element;
+		this.content = document.getElementsByClassName('js-drawer__body')[0];
+		this.triggers = document.querySelectorAll('[aria-controls="'+this.element.getAttribute('id')+'"]');
+		this.firstFocusable = null;
+		this.lastFocusable = null;
+		this.selectedTrigger = null;
+		this.isModal = Util.hasClass(this.element, 'js-drawer--modal');
+		this.showClass = "drawer--is-visible";
+		this.initDrawer();
+	};
+
+	Drawer.prototype.initDrawer = function() {
+		var self = this;
+		//open drawer when clicking on trigger buttons
+		if ( this.triggers ) {
+			for(var i = 0; i < this.triggers.length; i++) {
+				this.triggers[i].addEventListener('click', function(event) {
+					event.preventDefault();
+					if(Util.hasClass(self.element, self.showClass)) {
+						self.closeDrawer(event.target);
+						return;
+					}
+					self.selectedTrigger = event.target;
+					self.showDrawer();
+					self.initDrawerEvents();
+
+          document.getElementById('drawer-order').style.display = 'block';
+				});
+			}
+		}
+
+		// if drawer is already open -> we should initialize the drawer events
+		if(Util.hasClass(this.element, this.showClass)) this.initDrawerEvents();
+	};
+
+	Drawer.prototype.showDrawer = function() {
+		var self = this;
+		this.content.scrollTop = 0;
+		Util.addClass(this.element, this.showClass);
+		this.getFocusableElements();
+		Util.moveFocus(this.element);
+		// wait for the end of transitions before moving focus
+		this.element.addEventListener("transitionend", function cb(event) {
+			Util.moveFocus(self.element);
+			self.element.removeEventListener("transitionend", cb);
+		});
+		this.emitDrawerEvents('drawerIsOpen', this.selectedTrigger);
+	};
+  
+
+	Drawer.prototype.closeDrawer = function(target) {
+		Util.removeClass(this.element, this.showClass);
+		this.firstFocusable = null;
+		this.lastFocusable = null;
+		if(this.selectedTrigger) this.selectedTrigger.focus();
+		//remove listeners
+		this.cancelDrawerEvents();
+		this.emitDrawerEvents('drawerIsClose', target);
+
+
+	};
+
+	Drawer.prototype.initDrawerEvents = function() {
+		//add event listeners
+		this.element.addEventListener('keydown', this);
+		this.element.addEventListener('click', this);
+	};
+
+	Drawer.prototype.cancelDrawerEvents = function() {
+		//remove event listeners
+		this.element.removeEventListener('keydown', this);
+		this.element.removeEventListener('click', this);
+	};
+
+	Drawer.prototype.handleEvent = function (event) {
+		switch(event.type) {
+			case 'click': {
+				this.initClick(event);
+			}
+			case 'keydown': {
+				this.initKeyDown(event);
+			}
+		}
+	};
+
+	Drawer.prototype.initKeyDown = function(event) {
+		if( event.keyCode && event.keyCode == 27 || event.key && event.key == 'Escape' ) {
+			//close drawer window on esc
+			this.closeDrawer(false);
+		} else if( this.isModal && (event.keyCode && event.keyCode == 9 || event.key && event.key == 'Tab' )) {
+			//trap focus inside drawer
+			this.trapFocus(event);
+		}
+	};
+
+	Drawer.prototype.initClick = function(event) {
+		//close drawer when clicking on close button or drawer bg layer 
+		if( !event.target.closest('.js-drawer__close') && !Util.hasClass(event.target, 'js-drawer') ) return;
+		event.preventDefault();
+		this.closeDrawer(event.target);
+	};
+
+	Drawer.prototype.trapFocus = function(event) {
+		if( this.firstFocusable == document.activeElement && event.shiftKey) {
+			//on Shift+Tab -> focus last focusable element when focus moves out of drawer
+			event.preventDefault();
+			this.lastFocusable.focus();
+		}
+		if( this.lastFocusable == document.activeElement && !event.shiftKey) {
+			//on Tab -> focus first focusable element when focus moves out of drawer
+			event.preventDefault();
+			this.firstFocusable.focus();
+		}
+	}
+
+	Drawer.prototype.getFocusableElements = function() {
+		//get all focusable elements inside the drawer
+		var allFocusable = this.element.querySelectorAll('[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable], audio[controls], video[controls], summary');
+		this.getFirstVisible(allFocusable);
+		this.getLastVisible(allFocusable);
+	};
+
+	Drawer.prototype.getFirstVisible = function(elements) {
+		//get first visible focusable element inside the drawer
+		for(var i = 0; i < elements.length; i++) {
+			if( elements[i].offsetWidth || elements[i].offsetHeight || elements[i].getClientRects().length ) {
+				this.firstFocusable = elements[i];
+				return true;
+			}
+		}
+	};
+
+	Drawer.prototype.getLastVisible = function(elements) {
+		//get last visible focusable element inside the drawer
+		for(var i = elements.length - 1; i >= 0; i--) {
+			if( elements[i].offsetWidth || elements[i].offsetHeight || elements[i].getClientRects().length ) {
+				this.lastFocusable = elements[i];
+				return true;
+			}
+		}
+	};
+
+	Drawer.prototype.emitDrawerEvents = function(eventName, target) {
+		var event = new CustomEvent(eventName, {detail: target});
+		this.element.dispatchEvent(event);
+	};
+
+	//initialize the Drawer objects
+	var drawer = document.getElementsByClassName('js-drawer');
+	if( drawer.length > 0 ) {
+		for( var i = 0; i < drawer.length; i++) {
+			(function(i){new Drawer(drawer[i]);})(i);
+		}
+	}
+}());
+
+// File#: _1_custom-select
+// Usage: codyhouse.co/license
+(function() {
+	// NOTE: you need the js code only when using the --custom-dropdown variation of the Custom Select component. Default version does nor require JS.
+	
+  var CustomSelect = function(element) {
+		this.element = element;
+    this.select = this.element.getElementsByTagName('select')[0];
+    this.optGroups = this.select.getElementsByTagName('optgroup');
+		this.options = this.select.getElementsByTagName('option');
+		this.selectedOption = getSelectedOptionText(this);
+		this.selectId = this.select.getAttribute('id');
+		this.trigger = false;
+		this.dropdown = false;
+		this.customOptions = false;
+		this.arrowIcon = this.element.getElementsByTagName('svg');
+		this.label = document.querySelector('[for="'+this.selectId+'"]');
+
+		this.optionIndex = 0; // used while building the custom dropdown
+
+		initCustomSelect(this); // init markup
+		initCustomSelectEvents(this); // init event listeners
+  };
+  
+  function initCustomSelect(select) {
+		// create the HTML for the custom dropdown element
+		select.element.insertAdjacentHTML('beforeend', initButtonSelect(select) + initListSelect(select));
+		
+		// save custom elements
+		select.dropdown = select.element.getElementsByClassName('js-select__dropdown')[0];
+		select.trigger = select.element.getElementsByClassName('js-select__button')[0];
+		select.customOptions = select.dropdown.getElementsByClassName('js-select__item');
+    
+    // hide default select
+    Util.addClass(select.select, 'is-hidden');
+		if(select.arrowIcon.length > 0 ) select.arrowIcon[0].style.display = 'none';
+
+		// place dropdown
+		placeDropdown(select);
+  };
+
+  function initCustomSelectEvents(select) {
+		// option selection in dropdown
+		initSelection(select);
+
+		// click events
+		select.trigger.addEventListener('click', function(){
+			toggleCustomSelect(select, false);
+		});
+		if(select.label) {
+			// move focus to custom trigger when clicking on <select> label
+			select.label.addEventListener('click', function(){
+				Util.moveFocus(select.trigger);
+			});
+		}
+		// keyboard navigation
+		select.dropdown.addEventListener('keydown', function(event){
+			if(event.keyCode && event.keyCode == 38 || event.key && event.key.toLowerCase() == 'arrowup') {
+				keyboardCustomSelect(select, 'prev', event);
+			} else if(event.keyCode && event.keyCode == 40 || event.key && event.key.toLowerCase() == 'arrowdown') {
+				keyboardCustomSelect(select, 'next', event);
+			}
+		});
+		// native <select> element has been updated -> update custom select as well
+		select.element.addEventListener('select-updated', function(event){
+			resetCustomSelect(select);
+		});
+  };
+
+  function toggleCustomSelect(select, bool) {
+    var ariaExpanded;
+		if(bool) {
+			ariaExpanded = bool;
+		} else {
+			ariaExpanded = select.trigger.getAttribute('aria-expanded') == 'true' ? 'false' : 'true';
+		}
+		select.trigger.setAttribute('aria-expanded', ariaExpanded);
+		if(ariaExpanded == 'true') {
+      var selectedOption = getSelectedOption(select);
+      Util.moveFocus(selectedOption); // fallback if transition is not supported
+			select.dropdown.addEventListener('transitionend', function cb(){
+				Util.moveFocus(selectedOption);
+				select.dropdown.removeEventListener('transitionend', cb);
+			});
+			placeDropdown(select); // place dropdown based on available space
+		}
+  };
+
+  function placeDropdown(select) {
+		// remove placement classes to reset position
+		Util.removeClass(select.dropdown, 'select__dropdown--right select__dropdown--up');
+		var triggerBoundingRect = select.trigger.getBoundingClientRect();
+		Util.toggleClass(select.dropdown, 'select__dropdown--right', (document.documentElement.clientWidth - 5 < triggerBoundingRect.left + select.dropdown.offsetWidth));
+    // check if there's enough space up or down
+    var moveUp = (window.innerHeight - triggerBoundingRect.bottom - 5) < triggerBoundingRect.top;
+    Util.toggleClass(select.dropdown, 'select__dropdown--up', moveUp);
+    // check if we need to set a max width
+		var maxHeight = moveUp ? triggerBoundingRect.top - 20 : window.innerHeight - triggerBoundingRect.bottom - 20;
+		// set max-height based on available space
+    select.dropdown.setAttribute('style', 'max-height: '+maxHeight+'px; width: '+triggerBoundingRect.width+'px;');
+	};
+
+  function keyboardCustomSelect(select, direction, event) { // navigate custom dropdown with keyboard
+		event.preventDefault();
+		var index = Util.getIndexInArray(select.customOptions, document.activeElement);
+		index = (direction == 'next') ? index + 1 : index - 1;
+		if(index < 0) index = select.customOptions.length - 1;
+		if(index >= select.customOptions.length) index = 0;
+		Util.moveFocus(select.customOptions[index]);
+  };
+
+  function initSelection(select) { // option selection
+    select.dropdown.addEventListener('click', function(event){
+			var option = event.target.closest('.js-select__item');
+			if(!option) return;
+			selectOption(select, option);
+		});
+	};
+	
+	function selectOption(select, option) {
+		if(option.hasAttribute('aria-selected') && option.getAttribute('aria-selected') == 'true') {
+			// selecting the same option
+			select.trigger.setAttribute('aria-expanded', 'false'); // hide dropdown
+		} else { 
+			var selectedOption = select.dropdown.querySelector('[aria-selected="true"]');
+			if(selectedOption) selectedOption.setAttribute('aria-selected', 'false');
+			option.setAttribute('aria-selected', 'true');
+			select.trigger.getElementsByClassName('js-select__label')[0].textContent = option.textContent;
+			select.trigger.setAttribute('aria-expanded', 'false');
+			// new option has been selected -> update native <select> element _ arai-label of trigger <button>
+			updateNativeSelect(select, option.getAttribute('data-index'));
+			updateTriggerAria(select); 
+		}
+		// move focus back to trigger
+		select.trigger.focus();
+	};
+
+	function updateNativeSelect(select, index) {
+		select.select.selectedIndex = index;
+		select.select.dispatchEvent(new CustomEvent('change', {bubbles: true})); // trigger change event
+	};
+
+	function updateTriggerAria(select) {
+		select.trigger.setAttribute('aria-label', select.options[select.select.selectedIndex].innerHTML+', '+select.label.textContent);
+	};
+
+  function getSelectedOptionText(select) {// used to initialize the label of the custom select button
+		var label = '';
+		if('selectedIndex' in select.select) {
+			label = select.options[select.select.selectedIndex].text;
+		} else {
+			label = select.select.querySelector('option[selected]').text;
+		}
+		return label;
+
+  };
+  
+  function initButtonSelect(select) { // create the button element -> custom select trigger
+		// check if we need to add custom classes to the button trigger
+		var customClasses = select.element.getAttribute('data-trigger-class') ? ' '+select.element.getAttribute('data-trigger-class') : '';
+
+		var label = select.options[select.select.selectedIndex].innerHTML+', '+select.label.textContent;
+	
+    var button = '<button type="button" class="js-select__button select__button'+customClasses+'" aria-label="'+label+'" aria-expanded="false" aria-controls="'+select.selectId+'-dropdown"><span aria-hidden="true" class="js-select__label select__label">'+select.selectedOption+'</span>';
+    if(select.arrowIcon.length > 0 && select.arrowIcon[0].outerHTML) {
+			var clone = select.arrowIcon[0].cloneNode(true);
+      Util.removeClass(clone, 'select__icon');
+      button = button +clone.outerHTML;
+    }
+		
+		return button+'</button>';
+
+  };
+
+  function initListSelect(select) { // create custom select dropdown
+    var list = '<div class="js-select__dropdown select__dropdown" aria-describedby="'+select.selectId+'-description" id="'+select.selectId+'-dropdown">';
+		list = list + getSelectLabelSR(select);
+    if(select.optGroups.length > 0) {
+      for(var i = 0; i < select.optGroups.length; i++) {
+        var optGroupList = select.optGroups[i].getElementsByTagName('option'),
+          optGroupLabel = '<li><span class="select__item select__item--optgroup">'+select.optGroups[i].getAttribute('label')+'</span></li>';
+        list = list + '<ul class="select__list" role="listbox">'+optGroupLabel+getOptionsList(select, optGroupList) + '</ul>';
+      }
+    } else {
+      list = list + '<ul class="select__list" role="listbox">'+getOptionsList(select, select.options) + '</ul>';
+    }
+    return list;
+  };
+
+  function getSelectLabelSR(select) {
+    if(select.label) {
+      return '<p class="sr-only" id="'+select.selectId+'-description">'+select.label.textContent+'</p>'
+    } else {
+      return '';
+    }
+	};
+	
+	function resetCustomSelect(select) {
+		// <select> element has been updated (using an external control) - update custom select
+		var selectedOption = select.dropdown.querySelector('[aria-selected="true"]');
+		if(selectedOption) selectedOption.setAttribute('aria-selected', 'false');
+		var option = select.dropdown.querySelector('.js-select__item[data-index="'+select.select.selectedIndex+'"]');
+		option.setAttribute('aria-selected', 'true');
+		select.trigger.getElementsByClassName('js-select__label')[0].textContent = option.textContent;
+		select.trigger.setAttribute('aria-expanded', 'false');
+		updateTriggerAria(select); 
+	};
+
+  function getOptionsList(select, options) {
+    var list = '';
+    for(var i = 0; i < options.length; i++) {
+			var selected = options[i].hasAttribute('selected') ? ' aria-selected="true"' : ' aria-selected="false"';
+			list = list + '<li><button type="button" class="reset js-select__item select__item select__item--option" role="option" data-value="'+options[i].value+'" '+selected+' data-index="'+select.optionIndex+'">'+options[i].text+'</button></li>';
+			select.optionIndex = select.optionIndex + 1;
+    };
+    return list;
+  };
+
+  function getSelectedOption(select) {
+    var option = select.dropdown.querySelector('[aria-selected="true"]');
+    if(option) return option;
+    else return select.dropdown.getElementsByClassName('js-select__item')[0];
+  };
+
+  function moveFocusToSelectTrigger(select) {
+    if(!document.activeElement.closest('.js-select')) return
+    select.trigger.focus();
+	};
+	
+	function checkCustomSelectClick(select, target) { // close select when clicking outside it
+		if( !select.element.contains(target) ) toggleCustomSelect(select, 'false');
+  };
+  
+  //initialize the CustomSelect objects
+	var customSelect = document.getElementsByClassName('js-select');
+	if( customSelect.length > 0 ) {
+		var selectArray = [];
+		for( var i = 0; i < customSelect.length; i++) {
+			(function(i){selectArray.push(new CustomSelect(customSelect[i]));})(i);
+		}
+
+		// listen for key events
+		window.addEventListener('keyup', function(event){
+			if( event.keyCode && event.keyCode == 27 || event.key && event.key.toLowerCase() == 'escape' ) {
+				// close custom select on 'Esc'
+				selectArray.forEach(function(element){
+					moveFocusToSelectTrigger(element); // if focus is within dropdown, move it to dropdown trigger
+					toggleCustomSelect(element, 'false'); // close dropdown
+				});
+			} 
+		});
+		// close custom select when clicking outside it
+		window.addEventListener('click', function(event){
+			selectArray.forEach(function(element){
+				checkCustomSelectClick(element, event.target);
+			});
+		});
+	}
+}());
+  </script>
+
+<script>
+  // Get the modal
+  var modal = document.getElementById("myModal");
+  
+  // Get the button that opens the modal
+  var btn = document.getElementById("openModal-js");
+  
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+  
+  // When the user clicks the button, open the modal 
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+  
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+  </script>
+
+{%endblock%}
